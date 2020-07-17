@@ -1,0 +1,22 @@
+#match {
+  background-color: #322f2f;
+  color: #a6a6a6;
+}
+
+#match h1 {
+  width: 30%;
+  font-size: 45px;
+  margin-top: 180px;
+  margin-left: 50px;
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+#match .card {
+  border-radius: 20px;
+}
+
+.match-data {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}

@@ -1,5 +1,6 @@
 @import "components/nav.css";
-@import "components/home.css";
+@import "components/home/header.css";
+@import "components/home/match.css";
 
 @font-face {
   font-family: league-spartan;

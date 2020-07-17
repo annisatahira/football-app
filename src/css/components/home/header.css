@@ -1,60 +1,64 @@
-#home {
+header {
   background-color: #a64090;
   width: 100%;
   margin-top: -1px;
   color: white;
 }
 
-#home img {
+header img {
   width: 350px;
   margin-left: 10px;
   margin-bottom: 100px;
 }
 
-#home .title {
+header .title {
   position: absolute;
   z-index: 2;
   left: 20px;
   margin-top: 30%;
 }
 
-#home .title h1 {
+header .title h1 {
   font-size: 40px;
   width: 70%;
   z-index: 2;
 }
 
-#home .title p {
+header .title p {
   font-size: 15px;
   line-height: 2;
   width: 60%;
 }
 
+header .row {
+  margin-bottom: 0;
+}
+
 @media only screen and (max-width: 320px) {
-  #home img {
+  header img {
     width: 300px;
     margin-bottom: 200px;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  #home img {
-    width: 400px;
+  header img {
+    width: 350px;
     margin-left: -100px;
     margin-bottom: 40px;
   }
 
-  #home .title {
+  header .title {
     margin-top: 5%;
     left: 2%;
   }
 
-  #home .title h1 {
+  header .title h1 {
     font-size: 45px;
     margin-left: 30px;
   }
 
-  #home .title p {
+  header .title p {
     font-size: 10px;
     line-height: 2.5;
     margin-left: 30px;
@@ -62,26 +66,28 @@
 }
 
 @media only screen and (min-width: 1024px) {
-  #home img {
+  header img {
     margin-left: 20px;
     width: 500px;
   }
 
-  #home .title h1 {
+  header .title h1 {
     font-size: 54px;
   }
 
-  #home .title p {
+  header .title p {
     font-size: 15px;
   }
 }
 
 @media only screen and (min-width: 1200px) {
-  #home img {
+  header img {
+    width: 700px;
     margin-left: 70px;
+    margin-bottom: 100px;
   }
 
-  #home .title h1 {
-    font-size: 60px;
+  header .title h1 {
+    font-size: 70px;
   }
 }

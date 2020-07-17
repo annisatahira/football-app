@@ -1,11 +1,11 @@
-document.addEventListener("DOMContentLoaded", function () {
+const main = () => {
   // Activate sidebar nav
-  var elems = document.querySelectorAll(".sidenav");
+  const elems = document.querySelectorAll(".sidenav");
   M.Sidenav.init(elems);
   loadNav();
 
   function loadNav() {
-    var xhttp = new XMLHttpRequest();
+    const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4) {
         if (this.status != 200) return;
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
           .forEach(function (elm) {
             elm.addEventListener("click", function (event) {
               // Tutup sidenav
-              var sidenav = document.querySelector(".sidenav");
+              const sidenav = document.querySelector(".sidenav");
               M.Sidenav.getInstance(sidenav).close();
 
               // Muat konten halaman yang dipanggil
@@ -36,24 +36,24 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Load page content
-  var page = window.location.hash.substr(1);
+  let page = window.location.hash.substr(1);
   if (page == "") page = "home";
-  loadPage(page);
 
-  function loadPage(page) {
-    var xhttp = new XMLHttpRequest();
+  const loadPage = (page) => {
+    let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4) {
-        var content = document.querySelector("#body-content");
-
-        // if (page === "home") {
-        //   getArticles();
-        // } else if (page === "saved") {
-        //   getSavedArticles();
-        // }
+        const content = document.querySelector("#body-content");
 
         if (this.status == 200) {
           content.innerHTML = xhttp.responseText;
+          if (page === "home") {
+            const elem = document.querySelectorAll(".tabs");
+            const options = {
+              swipeable: true,
+            };
+            M.Tabs.init(elem, options);
+          }
         } else if (this.status == 404) {
           content.innerHTML = "<p>Halaman tidak ditemukan.</p>";
         } else {
@@ -63,5 +63,9 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     xhttp.open("GET", "src/components/pages/" + page + ".html", true);
     xhttp.send();
-  }
-});
+  };
+
+  loadPage(page);
+};
+
+export default main();
