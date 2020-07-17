@@ -1,0 +1,10 @@
+@import "components/nav.css";
+
+@font-face {
+  font-family: league-spartan;
+  src: url("../../src/fonts/leaguespartan-bold.woff");
+}
+
+body {
+  font-family: league-spartan, Georgia, "Times New Roman", Times, serif;
+}

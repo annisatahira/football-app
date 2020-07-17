@@ -7,21 +7,11 @@
     <link href="src/images/favicon.png" rel="icon" type="image/png" />
     <meta name="description" content="Football App" />
     <link rel="stylesheet" href="src/css/materialize.min.css" />
+    <link rel="stylesheet" href="src/css/style.css" />
   </head>
   <body>
     <!-- Navigasi -->
-    <div id="nav">
-      <nav role="navigation">
-        <div class="nav-wrapper container">
-          <span class="brand-logo" id="logo-container"
-            ><img src="./src/images/logo.png"
-          /></span>
-          <a href="#" class="sidenav-trigger" data-target="nav-mobile">☰</a>
-
-          <ul class="topnav right hide-on-med-and-down"></ul>
-          <ul class="sidenav" id="nav-mobile"></ul>
-        </div>
-      </nav>
+    <app-nav></app-nav>
     </div>
     <!-- Akhir Navigasi -->
 
@@ -36,5 +26,6 @@
     <!-- Akhir Footer -->
 
     <script src="src/js/materialize.min.js"></script>
+    <script src="src/js/main.js" type="module"></script>
   </body>
 </html>
