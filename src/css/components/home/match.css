@@ -17,6 +17,28 @@
 }
 
 .match-data {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin: 50px 0 50px 20px;
+}
+
+.tabs .tab a:hover,
+.tabs .tab a.active {
+  color: #a64090;
+}
+
+.tabs .tab a {
+  color: rgba(211, 114, 195, 0.7);
+}
+
+.tabs .tab a:focus,
+.tabs .tab a:focus.active {
+  background-color: rgba(219, 178, 246, 0.2);
+}
+
+#all-match {
+  overflow: auto;
+}
+
+td,
+th {
+  text-align: center;
 }
