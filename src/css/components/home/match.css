@@ -17,6 +17,10 @@
   background-color: white;
 }
 
+#match #league-info .card {
+  margin-top: 30px;
+}
+
 #match .tabs {
   background-color: #a64090;
   border-radius: 10px;
@@ -41,9 +45,14 @@
 }
 
 #match td,
-th {
+#match th {
   text-align: center;
   padding: 12px 10px;
+}
+
+#match #league-info td,
+#match #league-info th {
+  text-align: left;
 }
 
 #match .score {
@@ -92,8 +101,8 @@ th {
     font-size: 20px;
   }
 
-  #match .match-data {
-    margin: 50px;
+  #match .container {
+    margin: -1px 50px 50px 50px;
   }
 
   td,

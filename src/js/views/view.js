@@ -1,5 +1,10 @@
 // import $ from "../../../node_modules/jquery";
-import { getLeagues, getMatchesId } from "../api.js";
+import {
+  getLeagues,
+  getLeaguesId,
+  getMatchesId,
+  getMatchesIdStart,
+} from "../api.js";
 
 const main = () => {
   // Activate sidebar nav
@@ -53,10 +58,11 @@ const main = () => {
 
           if (page === "home") {
             getLeagues();
-            // let matchNull = document.querySelector("tbody");
-            // if (matchNull.innerText === "") {
-            //   getMatchesIdStart();
-            // }
+            let matchNull = document.querySelectorAll("tbody");
+            if (matchNull.innerText === "") {
+              console.log("mana datanya");
+              getMatchesIdStart();
+            }
             const elems = document.querySelectorAll(".carousel");
             const option = {
               dist: 0,
@@ -79,6 +85,7 @@ const main = () => {
                 console.log(id);
                 console.log(index);
                 getMatchesId(id);
+                getLeaguesId(id);
               });
             });
           }
