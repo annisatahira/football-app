@@ -71,7 +71,14 @@ const getLeaguesId = (id) => {
           <div class="col s12">
           <div class="card white">
             <div class="card-content soft-black">
-              <span class="card-title">${data.name}</span>
+              <div class="row">
+                <div class="col s6">
+                  <span class="card-title">${data.name}</span>
+                </div>
+                <div class="col s6">
+                  <button>Save</button>
+                </div>
+              </div>
               <table>
                 <tr>
                   <th>Area</th>
@@ -194,7 +201,14 @@ const getLeaguesIdStart = () => {
           <div class="col s12">
           <div class="card white">
             <div class="card-content soft-black">
-              <span class="card-title">${data.name}</span>
+              <div class="row">
+                <div class="col s6">
+                  <span class="card-title">${data.name}</span>
+                </div>
+                <div class="col s6">
+                  <a class="waves-effect waves-light btn purple lighten-1 right">Save</a>
+                </div>
+              </div>
               <table>
                 <tr>
                   <th>Area</th>
