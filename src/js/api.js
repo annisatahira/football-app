@@ -76,7 +76,7 @@ const getLeaguesId = (id) => {
                   <span class="card-title">${data.name}</span>
                 </div>
                 <div class="col s6">
-                  <button>Save</button>
+                  <a class="waves-effect waves-light btn purple lighten-1 right">Save</a>
                 </div>
               </div>
               <table>
