@@ -3,6 +3,7 @@ import {
   getLeagues,
   getLeaguesId,
   getMatchesId,
+  getLeaguesIdStart,
   getMatchesIdStart,
 } from "../api.js";
 
@@ -59,8 +60,9 @@ const main = () => {
           if (page === "home") {
             getLeagues();
             let matchNull = document.querySelectorAll("tbody");
-            if (matchNull.innerText === "") {
+            if (matchNull[0].innerText === "") {
               console.log("mana datanya");
+              getLeaguesIdStart();
               getMatchesIdStart();
             }
             const elems = document.querySelectorAll(".carousel");

@@ -86,10 +86,6 @@ const getLeaguesId = (id) => {
                   <th>End Date</th>
                   <td>${data.currentSeason.endDate}</td>
                 </tr>
-                <tr>
-                  <th>Winner</th>
-                  <td>${data.winner}</td>
-                </tr>
               </table>
             </div>
           </div>
@@ -142,6 +138,53 @@ const getMatchesId = (id) => {
   });
 };
 
+//melakukan req data leagues info
+const getLeaguesIdStart = () => {
+  return new Promise(function (resolve, reject) {
+    fetch(`${base_url}/2013`, {
+      mode: "cors",
+      headers: {
+        "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+      },
+    })
+      .then(status)
+      .then(json)
+      .then(function (data) {
+        console.log("ini yg info" + data);
+        let leaguesHTML = `
+          <div class="col s12">
+          <div class="card white">
+            <div class="card-content soft-black">
+              <span class="card-title">${data.name}</span>
+              <table>
+                <tr>
+                  <th>Area</th>
+                  <td>${data.area.name}</td>
+                </tr>
+                <tr>
+                  <th>Start Date</th>
+                  <td>${data.currentSeason.startDate}</td>
+                </tr>
+                <tr>
+                  <th>End Date</th>
+                  <td>${data.currentSeason.endDate}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+              `;
+
+        // Sisipkan komponen card ke dalam elemen dengan id #content
+        document.getElementById("league-info").innerHTML = leaguesHTML;
+        resolve(data);
+      })
+      .then(changeCellIfEmpty)
+
+      .catch(error);
+  });
+};
+
 //matches awal
 //melakukan req data json competition match
 const getMatchesIdStart = () => {
@@ -183,4 +226,10 @@ const getMatchesIdStart = () => {
       .catch(error);
   });
 };
-export { getLeagues, getLeaguesId, getMatchesId, getMatchesIdStart };
+export {
+  getLeagues,
+  getLeaguesId,
+  getMatchesId,
+  getLeaguesIdStart,
+  getMatchesIdStart,
+};
