@@ -8,6 +8,7 @@
   margin-bottom: 0;
   padding: 50px 50px 0 50px;
   font-size: 45px;
+  position: absolute;
 }
 
 #match .card {
@@ -72,6 +73,18 @@ th {
 
 #match h6 {
   margin-top: 20px;
+}
+
+#match span {
+  display: none;
+}
+
+.leagues .carousel .carousel-item {
+  top: 30px;
+}
+
+.leagues .carousel .indicators {
+  bottom: -30px;
 }
 
 @media only screen and (min-width: 768px) {

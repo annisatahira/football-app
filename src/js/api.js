@@ -42,6 +42,7 @@ const getLeagues = () => {
     leaguesHTML += `
     <a class="carousel-item" href="#one!"> 
       <div class="liga-img center">
+        <span>${league.id}</span>
         <img src=${league.image} />
       </div>
       <h6 class="league white-text center">${league.name}</h6>
