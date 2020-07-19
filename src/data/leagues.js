@@ -1,12 +1,5 @@
 const leagues = [
   {
-    id: 2013,
-    name: "Série A",
-    area: "Brazil",
-    image:
-      "https://upload.wikimedia.org/wikipedia/en/thumb/4/42/Campeonato_Brasileiro_S%C3%A9rie_A_logo.png/300px-Campeonato_Brasileiro_S%C3%A9rie_A_logo.png",
-  },
-  {
     id: 2016,
     name: "Championship",
     area: "England",
@@ -33,6 +26,13 @@ const leagues = [
     area: "Europe",
     image:
       "https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/UEFA_Champions_League_logo_2.svg/1200px-UEFA_Champions_League_logo_2.svg.png",
+  },
+  {
+    id: 2013,
+    name: "Série A",
+    area: "Brazil",
+    image:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/4/42/Campeonato_Brasileiro_S%C3%A9rie_A_logo.png/300px-Campeonato_Brasileiro_S%C3%A9rie_A_logo.png",
   },
   {
     id: 2015,

@@ -59,7 +59,6 @@ const getLeagues = () => {
 const getLeaguesId = (id) => {
   return new Promise(function (resolve, reject) {
     fetch(`${base_url}${id}`, {
-      mode: "cors",
       headers: {
         "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
       },
@@ -102,12 +101,53 @@ const getLeaguesId = (id) => {
   });
 };
 
+const getStandingId = (id) => {
+  console.log(id);
+  return new Promise(function (resolve, reject) {
+    fetch(`${base_url}${id}/standings`, {
+      headers: {
+        "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+      },
+    })
+      .then(status)
+      .then(json)
+      .then(function (data) {
+        console.log(data);
+        let standingHTML = "";
+        data.standings.forEach(function (standing) {
+          standingHTML += `
+            <tr>
+              <td>TYPE : ${standing.type}</td>
+            </tr>
+              `;
+          standing.table.forEach(function (data) {
+            standingHTML += `
+            <tr>
+              <td>${data.position}</td>
+              <td>${data.team.name}</td>
+              <td>${data.playedGames}</td>
+              <td>${data.won}</td>
+              <td>${data.draw}</td>
+              <td>${data.lost}</td>
+            </tr>
+              `;
+          });
+        });
+        // Sisipkan komponen card ke dalam elemen dengan id #content
+        document.getElementById("data-standings").innerHTML = standingHTML;
+        resolve(data);
+      })
+      .then(changeCellIfEmpty)
+
+      .catch(error);
+  });
+};
+
 //melakukan req data json competition id
 const getMatchesId = (id) => {
   console.log(id);
   return new Promise(function (resolve, reject) {
     fetch(`${base_url}${id}/matches`, {
-      mode: "cors",
       headers: {
         "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
       },
@@ -141,8 +181,7 @@ const getMatchesId = (id) => {
 //melakukan req data leagues info
 const getLeaguesIdStart = () => {
   return new Promise(function (resolve, reject) {
-    fetch(`${base_url}/2013`, {
-      mode: "cors",
+    fetch(`${base_url}/2016`, {
       headers: {
         "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
       },
@@ -189,8 +228,7 @@ const getLeaguesIdStart = () => {
 //melakukan req data json competition match
 const getMatchesIdStart = () => {
   return new Promise(function (resolve, reject) {
-    fetch(`${base_url}2013/matches`, {
-      mode: "cors",
+    fetch(`${base_url}2016/matches`, {
       headers: {
         "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
       },
@@ -226,10 +264,53 @@ const getMatchesIdStart = () => {
       .catch(error);
   });
 };
+const getStandingIdStart = (id) => {
+  console.log(id);
+  return new Promise(function (resolve, reject) {
+    fetch(`${base_url}2016/standings`, {
+      headers: {
+        "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+      },
+    })
+      .then(status)
+      .then(json)
+      .then(function (data) {
+        console.log(data);
+        let standingHTML = "";
+        data.standings.forEach(function (standing) {
+          standingHTML += `
+            <tr>
+              <td>TYPE : ${standing.type}</td>
+            </tr>
+              `;
+          standing.table.forEach(function (data) {
+            standingHTML += `
+            <tr>
+              <td>${data.position}</td>
+              <td>${data.team.name}</td>
+              <td>${data.playedGames}</td>
+              <td>${data.won}</td>
+              <td>${data.draw}</td>
+              <td>${data.lost}</td>
+            </tr>
+              `;
+          });
+        });
+        // Sisipkan komponen card ke dalam elemen dengan id #content
+        document.getElementById("data-standings").innerHTML = standingHTML;
+        resolve(data);
+      })
+      .then(changeCellIfEmpty)
+
+      .catch(error);
+  });
+};
 export {
   getLeagues,
   getLeaguesId,
   getMatchesId,
+  getStandingId,
   getLeaguesIdStart,
   getMatchesIdStart,
+  getStandingIdStart,
 };

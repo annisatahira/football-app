@@ -5,6 +5,8 @@ import {
   getMatchesId,
   getLeaguesIdStart,
   getMatchesIdStart,
+  getStandingIdStart,
+  getStandingId,
 } from "../api.js";
 
 const main = () => {
@@ -64,6 +66,7 @@ const main = () => {
               console.log("mana datanya");
               getLeaguesIdStart();
               getMatchesIdStart();
+              getStandingIdStart();
             }
             const elems = document.querySelectorAll(".carousel");
             const option = {
@@ -79,6 +82,7 @@ const main = () => {
             };
             M.Tabs.init(elem, options);
             M.Carousel.init(elems, option);
+
             // Daftarkan event listener untuk setiap tautan menu
             document.querySelectorAll(".league-item").forEach(function (elm) {
               elm.addEventListener("click", function (el) {
@@ -88,6 +92,7 @@ const main = () => {
                 console.log(index);
                 getMatchesId(id);
                 getLeaguesId(id);
+                getStandingId(id);
               });
             });
           }

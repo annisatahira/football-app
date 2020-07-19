@@ -40,7 +40,8 @@
   background-color: rgba(219, 178, 246, 0.2);
 }
 
-#all-match {
+#all-match,
+#standings {
   overflow: auto;
 }
 
@@ -94,6 +95,11 @@
 
 .leagues .carousel .indicators {
   bottom: -30px;
+}
+
+td > img {
+  width: 50px;
+  height: 50px;
 }
 
 @media only screen and (min-width: 768px) {
