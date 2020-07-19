@@ -1,3 +1,5 @@
+import { getMatches, getLeagues } from "../api.js";
+
 const main = () => {
   // Activate sidebar nav
   const elems = document.querySelectorAll(".sidenav");
@@ -47,12 +49,25 @@ const main = () => {
 
         if (this.status == 200) {
           content.innerHTML = xhttp.responseText;
+
           if (page === "home") {
+            getLeagues();
+            const elems = document.querySelectorAll(".carousel");
+            const option = {
+              dist: 0,
+              padding: 0,
+              indicators: true,
+              numVisible: 3,
+            };
+            M.Carousel.init(elems, option);
             const elem = document.querySelectorAll(".tabs");
             const options = {
               swipeable: true,
+              indicators: false,
             };
             M.Tabs.init(elem, options);
+
+            getMatches();
           }
         } else if (this.status == 404) {
           content.innerHTML = "<p>Halaman tidak ditemukan.</p>";

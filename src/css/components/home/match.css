@@ -4,33 +4,34 @@
 }
 
 #match h1 {
-  width: 30%;
+  margin-top: -1px;
+  margin-bottom: 0;
+  padding: 50px 50px 0 50px;
   font-size: 45px;
-  margin-top: 180px;
-  margin-left: 50px;
-  -ms-transform: rotate(-90deg);
-  transform: rotate(-90deg);
 }
 
 #match .card {
-  border-radius: 20px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: white;
 }
 
-.match-data {
-  margin: 50px 0 50px 20px;
+#match .tabs {
+  background-color: #a64090;
+  border-radius: 10px;
 }
 
-.tabs .tab a:hover,
-.tabs .tab a.active {
-  color: #a64090;
+#match .tabs .tab a:hover,
+#match .tabs .tab a.active {
+  color: white;
 }
 
-.tabs .tab a {
-  color: rgba(211, 114, 195, 0.7);
+#match .tabs .tab a {
+  color: rgba(255, 233, 251, 0.7);
 }
 
-.tabs .tab a:focus,
-.tabs .tab a:focus.active {
+#match .tabs .tab a:focus,
+#match .tabs .tab a:focus.active {
   background-color: rgba(219, 178, 246, 0.2);
 }
 
@@ -38,7 +39,53 @@
   overflow: auto;
 }
 
-td,
+#match td,
 th {
   text-align: center;
+  padding: 12px 10px;
+}
+
+#match .score {
+  padding: 12px 5px;
+}
+#match .soft-black {
+  color: #5f5a5a;
+}
+
+#match .liga-img {
+  background-color: white;
+  height: 180px;
+  width: 180px;
+  border-radius: 50%;
+  border: 13px solid #a64090;
+  margin: 0 auto;
+}
+
+#match .liga-img img {
+  width: 100%;
+  padding-top: 25px;
+  height: 140px;
+  object-position: center;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+#match h6 {
+  margin-top: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  .score {
+    font-size: 20px;
+  }
+
+  #match .match-data {
+    margin: 50px;
+  }
+
+  td,
+  th {
+    text-align: center;
+    padding: 20px 5px;
+  }
 }
