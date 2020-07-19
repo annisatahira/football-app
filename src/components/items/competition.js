@@ -8,19 +8,19 @@ class Competition extends HTMLElement {
         <div id="league-info" class="row"></div>
 
         <div class="leagues-data row">
-            <div class="col s12">
+            <div class="col s12 m12 l12">
             <ul class="tabs tabs-fixed-width">
-                <li class="tab col s3">
+                <li class="tab col s6 l6 m6">
                 <a class="active" href="#all-match">All Match</a>
                 </li>
-                <li class="tab col s3">
+                <li class="tab col s6 l6 m6">
                 <a href="#standings">Standings</a>
                 </li>
             </ul>
             </div>
-            <div id="all-match" class="col s12 tab-data">
+            <div id="all-match" class="col s12 m12 l12 tab-data">
             <div class="row">
-                <div class="col s12">
+                <div class="col s12 m12 l12">
                 <div class="card darken-1">
                     <table>
                     <thead>
@@ -36,9 +36,9 @@ class Competition extends HTMLElement {
                 </div>
             </div>
             </div>
-            <div id="standings" class="col s12">
+            <div id="standings" class="col s12 m12 l12">
             <div class="row">
-                <div class="col s12">
+                <div class="col s12 m12 l12">
                 <div class="card darken-1">
                     <table>
                     <thead>

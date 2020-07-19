@@ -45,7 +45,7 @@ const getLeagues = () => {
     <a class="carousel-item league-item"> 
     <h4>${league.id}</h4>
       <div class="liga-img center">
-        <img src=${league.image} />
+        <img src=${league.image} alt=${league.name} />
       </div>
       <h6 class="league white-text center">${league.name}</h6>
     </a>
@@ -68,14 +68,14 @@ const getLeaguesId = (id) => {
       .then(function (data) {
         console.log("ini yg info" + data);
         let leaguesHTML = `
-          <div class="col s12">
+          <div class="col s12 m12 l12">
           <div class="card white">
             <div class="card-content soft-black">
               <div class="row">
-                <div class="col s6">
+                <div class="col s6 m6 l6">
                   <span class="card-title">${data.name}</span>
                 </div>
-                <div class="col s6">
+                <div class="col s6 m6 l6">
                   <a class="waves-effect waves-light btn purple lighten-1 right">Save</a>
                 </div>
               </div>
@@ -198,14 +198,14 @@ const getLeaguesIdStart = () => {
       .then(function (data) {
         console.log("ini yg info" + data);
         let leaguesHTML = `
-          <div class="col s12">
+          <div class="col s12 m12 l12">
           <div class="card white">
             <div class="card-content soft-black">
               <div class="row">
-                <div class="col s6">
+                <div class="col s6 m6 l6">
                   <span class="card-title">${data.name}</span>
                 </div>
-                <div class="col s6">
+                <div class="col s6 m6 l6">
                   <a class="waves-effect waves-light btn purple lighten-1 right">Save</a>
                 </div>
               </div>
