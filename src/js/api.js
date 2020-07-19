@@ -40,7 +40,7 @@ const getLeagues = () => {
   let leaguesHTML = "";
   leagues.forEach(function (league) {
     leaguesHTML += `
-    <a class="carousel-item league-item" href="#all-match"> 
+    <a class="carousel-item league-item" href="#${league.id}"> 
     <h4>${league.id}</h4>
       <div class="liga-img center">
         <img src=${league.image} />
@@ -91,37 +91,37 @@ const getMatchesId = (id) => {
 
 //matches awal
 //melakukan req data json competition match
-const getMatchesIdStart = () => {
-  return new Promise(function (resolve, reject) {
-    fetch(`${base_url}2016/matches`, {
-      mode: "cors",
-      headers: {
-        "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
-      },
-    })
-      .then(status)
-      .then(json)
-      .then(function (data) {
-        console.log(data);
-        let matchesHTML = "";
-        data.matches.forEach(function (competitions) {
-          matchesHTML += `
-          <tr>
-            <td>${competitions.homeTeam.name}</td>
-            <td class="score">${competitions.score.fullTime.homeTeam}</td>
-            <td class="score">-</td>
-            <td class="score">${competitions.score.fullTime.awayTeam}</td>
-            <td>${competitions.awayTeam.name}</td>
-          </tr>
-              `;
-        });
-        // Sisipkan komponen card ke dalam elemen dengan id #content
-        document.getElementById("data-matches").innerHTML = matchesHTML;
-        resolve(data);
-      })
-      .then(changeCellIfEmpty)
+// const getMatchesIdStart = () => {
+//   return new Promise(function (resolve, reject) {
+//     fetch(`${base_url}2016/matches`, {
+//       mode: "cors",
+//       headers: {
+//         "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+//       },
+//     })
+//       .then(status)
+//       .then(json)
+//       .then(function (data) {
+//         console.log(data);
+//         let matchesHTML = "";
+//         data.matches.forEach(function (competitions) {
+//           matchesHTML += `
+//           <tr>
+//             <td>${competitions.homeTeam.name}</td>
+//             <td class="score">${competitions.score.fullTime.homeTeam}</td>
+//             <td class="score">-</td>
+//             <td class="score">${competitions.score.fullTime.awayTeam}</td>
+//             <td>${competitions.awayTeam.name}</td>
+//           </tr>
+//               `;
+//         });
+//         // Sisipkan komponen card ke dalam elemen dengan id #content
+//         document.getElementById("data-matches").innerHTML = matchesHTML;
+//         resolve(data);
+//       })
+//       .then(changeCellIfEmpty)
 
-      .catch(error);
-  });
-};
-export { getLeagues, getMatchesId, getMatchesIdStart };
+//       .catch(error);
+//   });
+// };
+export { getLeagues, getMatchesId };
