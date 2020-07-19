@@ -1,4 +1,4 @@
-import { getMatches, getLeagues } from "../api.js";
+import { getLeagues, getMatchesId } from "../api.js";
 
 const main = () => {
   // Activate sidebar nav
@@ -60,14 +60,22 @@ const main = () => {
               numVisible: 3,
             };
             M.Carousel.init(elems, option);
-            const elem = document.querySelectorAll(".tabs");
-            const options = {
-              swipeable: true,
-              indicators: false,
-            };
-            M.Tabs.init(elem, options);
+            // Daftarkan event listener untuk setiap tautan menu
+            document.querySelectorAll(".league-item").forEach(function (elm) {
+              elm.addEventListener("click", function (event) {
+                let id = document.querySelector("h4").innerText;
+                console.log(id);
+                getMatchesId(id);
+                document.querySelector("h4").remove();
 
-            getMatches();
+                const elem = document.querySelectorAll(".tabs");
+                const options = {
+                  swipeable: true,
+                  indicators: false,
+                };
+                M.Tabs.init(elem, options);
+              });
+            });
           }
         } else if (this.status == 404) {
           content.innerHTML = "<p>Halaman tidak ditemukan.</p>";

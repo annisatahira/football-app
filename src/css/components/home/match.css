@@ -7,7 +7,7 @@
   margin-top: -1px;
   margin-bottom: 0;
   padding: 50px 50px 0 50px;
-  font-size: 45px;
+  font-size: 40px;
   position: absolute;
 }
 
@@ -75,7 +75,7 @@ th {
   margin-top: 20px;
 }
 
-#match span {
+#match h4 {
   display: none;
 }
 
