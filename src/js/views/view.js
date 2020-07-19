@@ -1,4 +1,4 @@
-import { getLeagues, getMatchesId } from "../api.js";
+import { getLeagues, getMatchesId, getMatchesIdStart } from "../api.js";
 
 const main = () => {
   // Activate sidebar nav
@@ -52,6 +52,10 @@ const main = () => {
 
           if (page === "home") {
             getLeagues();
+            let matchNull = document.querySelector("tbody");
+            if (matchNull.innerText === "") {
+              getMatchesIdStart();
+            }
             const elems = document.querySelectorAll(".carousel");
             const option = {
               dist: 0,
@@ -59,6 +63,12 @@ const main = () => {
               indicators: true,
               numVisible: 3,
             };
+            const elem = document.querySelectorAll(".tabs");
+            const options = {
+              swipeable: true,
+              indicators: false,
+            };
+            M.Tabs.init(elem, options);
             M.Carousel.init(elems, option);
             // Daftarkan event listener untuk setiap tautan menu
             document.querySelectorAll(".league-item").forEach(function (elm) {
@@ -67,13 +77,6 @@ const main = () => {
                 console.log(id);
                 getMatchesId(id);
                 document.querySelector("h4").remove();
-
-                const elem = document.querySelectorAll(".tabs");
-                const options = {
-                  swipeable: true,
-                  indicators: false,
-                };
-                M.Tabs.init(elem, options);
               });
             });
           }
