@@ -261,7 +261,7 @@ const getMatchesIdStart = () => {
           matchesHTML += `
           <tr>
             <td class="team">
-              <a href="./team.html">
+              <a href="./team.html?id=${competitions.homeTeam.id}">
                 ${competitions.homeTeam.name}
               </a>
             </td>
@@ -327,7 +327,10 @@ const getStandingIdStart = () => {
 const getTeamId = () => {
   console.log();
   return new Promise(function (resolve, reject) {
-    fetch(`${base_url}teams/11`, {
+    let urlParams = new URLSearchParams(window.location.search);
+    let idParam = urlParams.get("id");
+    console.log(idParam);
+    fetch(`${base_url}teams/${idParam}`, {
       headers: {
         "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
       },
@@ -374,7 +377,7 @@ const getTeamId = () => {
             <div class="row">`;
         data.squad.forEach(function (player) {
           teamHTML += `
-              <div class="col s12 m6 l4">
+              <div class="col s12 m6 l6 xl4">
                   <div class="card z-depth-3">
                     <div class="card-content center">
                       <span class="card-title grey-text text-darken-4"
