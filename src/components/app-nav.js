@@ -8,8 +8,7 @@ class Nav extends HTMLElement {
       <nav role="navigation">
       <div class="nav-wrapper container">
         <span class="brand-logo" id="logo-container"
-          ><img src="./src/images/logo.png"
-        /></span>
+          >Soccer</span>
         <a href="#" class="sidenav-trigger" data-target="nav-mobile">☰</a>
   
         <ul class="topnav right hide-on-med-and-down"></ul>

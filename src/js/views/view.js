@@ -78,7 +78,7 @@ const main = () => {
             };
             const elem = document.querySelectorAll(".tabs");
             const options = {
-              swipeable: true,
+              swipeable: false,
               indicators: false,
             };
             M.Tabs.init(elem, options);
