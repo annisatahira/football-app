@@ -31,8 +31,20 @@ const changeCellIfEmpty = () => {
 
   for (let i = 0; i < matchEl.length; i++) {
     if (matchEl[i].innerText === "null") {
-      matchEl[i].innerText = "";
+      matchEl[i].innerText = "Not Available";
     }
+  }
+};
+
+const replaceNoImage = (image) => {
+  let http = new XMLHttpRequest();
+  http.open("HEAD", image, false);
+  http.send();
+
+  if (image === "null" || image === "" || http.status === 404) {
+    return (image = "src/images/no-image.svg");
+  } else {
+    return image;
   }
 };
 
@@ -130,7 +142,10 @@ const getStandingId = (id) => {
             standingHTML += `
             <tr>
               <td>${data.position}</td>
-              <td class="team">${data.team.name}</td>
+              <td><img src=${replaceNoImage(data.team.crestUrl)} alt=${
+              data.team.name
+            }/></td>
+              <td>${data.team.name}</td>
               <td>${data.playedGames}</td>
               <td>${data.won}</td>
               <td>${data.draw}</td>
@@ -304,6 +319,9 @@ const getStandingIdStart = () => {
             standingHTML += `
             <tr>
               <td>${data.position}</td>
+              <td><img src=${replaceNoImage(data.team.crestUrl)} alt=${
+              data.team.name
+            }/></td>
               <td>${data.team.name}</td>
               <td>${data.playedGames}</td>
               <td>${data.won}</td>
@@ -346,7 +364,7 @@ const getTeamId = () => {
           <div class="col s12 m4 l4">
             <div class="card z-depth-3">
               <div class="card-image">
-                <img src=${data.crestUrl} />
+                <img src=${replaceNoImage(data.crestUrl)} />
               </div>
             </div>
           </div>
@@ -354,6 +372,7 @@ const getTeamId = () => {
             <div class="card z-depth-3">
               <div class="card-content black-text">
                 <span class="card-title">${data.name}</span>
+                
                 <table>
                   <tr>
                     <th class="left">Addres</th>
