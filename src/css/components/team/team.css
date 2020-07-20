@@ -1,0 +1,72 @@
+#team {
+  background-color: #322f2f;
+  color: #a6a6a6;
+}
+
+#team .card {
+  border-radius: 20px;
+}
+
+#team .card img {
+  padding: 20px;
+  margin: 0 auto;
+}
+
+#team td,
+#team th {
+  text-align: left;
+}
+
+#team-info .card {
+  margin-top: 30px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+#team-squad h1 {
+  font-size: 35px;
+  text-align: center;
+}
+
+#team-squad h1::after {
+  display: block;
+  content: "";
+  width: 30%;
+  height: 10px;
+  background: purple;
+  margin: 0 auto;
+  margin-top: 18px;
+}
+
+#team-squad .card {
+  height: 300px;
+  width: 100%;
+}
+
+#team-squad .card .card-content {
+  padding-top: 20%;
+}
+
+#team-squad .btn-player {
+  margin: 0 auto;
+  bottom: -100px;
+}
+.card .card-reveal {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+@media only screen and (min-width: 768px) {
+  td,
+  th {
+    padding: 10px;
+  }
+
+  #team .card img {
+    width: 200px;
+    height: 200px;
+  }
+
+  #team-info .card {
+    margin-top: 50px;
+    height: 220px;
+  }
+}

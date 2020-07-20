@@ -1,8 +1,7 @@
 import leagues from "../data/leagues.js";
-import List from "../components/container/list.js";
 import "../components/items/match-item.js";
 
-const base_url = "https://api.football-data.org/v2/competitions/";
+const base_url = "https://api.football-data.org/v2/";
 
 //blok kode yg dipanggil jika berhasil
 const status = (res) => {
@@ -58,7 +57,7 @@ const getLeagues = () => {
 //melakukan req data leagues info
 const getLeaguesId = (id) => {
   return new Promise(function (resolve, reject) {
-    fetch(`${base_url}${id}`, {
+    fetch(`${base_url}competitions/${id}`, {
       headers: {
         "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
       },
@@ -111,7 +110,7 @@ const getLeaguesId = (id) => {
 const getStandingId = (id) => {
   console.log(id);
   return new Promise(function (resolve, reject) {
-    fetch(`${base_url}${id}/standings`, {
+    fetch(`${base_url}competitions/${id}/standings`, {
       headers: {
         "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
       },
@@ -154,7 +153,7 @@ const getStandingId = (id) => {
 const getMatchesId = (id) => {
   console.log(id);
   return new Promise(function (resolve, reject) {
-    fetch(`${base_url}${id}/matches`, {
+    fetch(`${base_url}competitions/${id}/matches`, {
       headers: {
         "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
       },
@@ -188,7 +187,7 @@ const getMatchesId = (id) => {
 //melakukan req data leagues info
 const getLeaguesIdStart = () => {
   return new Promise(function (resolve, reject) {
-    fetch(`${base_url}/2016`, {
+    fetch(`${base_url}competitions/2016`, {
       headers: {
         "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
       },
@@ -242,7 +241,7 @@ const getLeaguesIdStart = () => {
 //melakukan req data json competition match
 const getMatchesIdStart = () => {
   return new Promise(function (resolve, reject) {
-    fetch(`${base_url}2016/matches`, {
+    fetch(`${base_url}competitions/2016/matches`, {
       headers: {
         "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
       },
@@ -278,10 +277,10 @@ const getMatchesIdStart = () => {
       .catch(error);
   });
 };
-const getStandingIdStart = (id) => {
-  console.log(id);
+const getStandingIdStart = () => {
+  console.log();
   return new Promise(function (resolve, reject) {
-    fetch(`${base_url}2016/standings`, {
+    fetch(`${base_url}competitions/2016/standings`, {
       headers: {
         "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
       },
@@ -319,6 +318,112 @@ const getStandingIdStart = (id) => {
       .catch(error);
   });
 };
+
+// Get Detail Team
+const getTeamId = () => {
+  console.log();
+  return new Promise(function (resolve, reject) {
+    fetch(`${base_url}teams/11`, {
+      headers: {
+        "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+      },
+    })
+      .then(status)
+      .then(json)
+      .then(function (data) {
+        console.log(data);
+        let teamHTML = "";
+
+        teamHTML += `
+          <div id="team-info" class="row">
+          <div class="col s12 m4 l4">
+            <div class="card">
+              <div class="card-image">
+                <img src=${data.crestUrl} />
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m8 l8">
+            <div class="card">
+              <div class="card-content black-text">
+                <span class="card-title">${data.name}</span>
+                <table>
+                  <tr>
+                    <th class="left">Addres</th>
+                    <td>${data.address}</td>
+                  </tr>
+                  <tr>
+                    <th class="left">Email</th>
+                    <td>${data.email}</td>
+                  </tr>
+                  <tr>
+                    <th class="left">Venue</th>
+                    <td>${data.venue}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="team-squad">
+            <h1>Meet The Squad</h1>
+            <div class="row">`;
+        data.squad.forEach(function (player) {
+          teamHTML += `
+              <div class="col s12 m6 l4">
+                  <div class="card">
+                    <div class="card-content center">
+                      <span class="card-title grey-text text-darken-4"
+                        ><p>${player.name}</p></span
+                      >
+                      <p>${player.position}</p>
+                      <a
+                        class="btn-player waves-effect waves-light purple lighten-1 btn-small activator"
+                        >Detail</a
+                      >
+                    </div>
+                    <div class="card-reveal">
+                      <span class="card-title black-text text-darken-4"
+                        ><i class="material-icons right">close</i></span
+                      >
+                      <table>
+                        <tr class="black-text">
+                          <th class="left">Birth</th>
+                          <td>${player.dateOfBirth}</td>
+                        </tr>
+                        <tr class="black-text">
+                          <th class="left">Country of Birth</th>
+                          <td>${player.countryOfBirth}</td>
+                        </tr>
+                        <tr class="black-text">
+                          <th class="left">Nationality</th>
+                          <td>${player.nationality}</td>
+                        </tr>
+                        <tr class="black-text">
+                          <th class="left">Shirt Number</th>
+                          <td>${player.shirtNumber}</td>
+                        </tr>
+                        <tr class="black-text">
+                          <th class="left">Role</th>
+                          <td>${player.role}</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                `;
+        });
+        ` </div>
+          </div>`;
+        // Sisipkan komponen card ke dalam elemen dengan id #content
+        document.getElementById("data-team").innerHTML = teamHTML;
+        resolve(data);
+      })
+      .then(changeCellIfEmpty)
+
+      .catch(error);
+  });
+};
 export {
   getLeagues,
   getLeaguesId,
@@ -327,4 +432,5 @@ export {
   getLeaguesIdStart,
   getMatchesIdStart,
   getStandingIdStart,
+  getTeamId,
 };
