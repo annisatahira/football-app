@@ -54,6 +54,14 @@
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
+.team {
+  cursor: pointer;
+}
+
+.team:hover {
+  color: purple;
+}
+
 @media only screen and (min-width: 768px) {
   td,
   th {

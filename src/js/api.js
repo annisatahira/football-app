@@ -130,7 +130,7 @@ const getStandingId = (id) => {
             standingHTML += `
             <tr>
               <td>${data.position}</td>
-              <td>${data.team.name}</td>
+              <td class="team">${data.team.name}</td>
               <td>${data.playedGames}</td>
               <td>${data.won}</td>
               <td>${data.draw}</td>
@@ -166,11 +166,11 @@ const getMatchesId = (id) => {
         data.matches.forEach(function (competitions) {
           matchesHTML += `
           <tr>
-            <td>${competitions.homeTeam.name}</td>
+            <td class="team">${competitions.homeTeam.name}</td>
             <td class="score">${competitions.score.fullTime.homeTeam}</td>
             <td class="score">-</td>
             <td class="score">${competitions.score.fullTime.awayTeam}</td>
-            <td>${competitions.awayTeam.name}</td>
+            <td class="team">${competitions.awayTeam.name}</td>
           </tr>
               `;
         });
@@ -260,11 +260,15 @@ const getMatchesIdStart = () => {
         data.matches.forEach(function (competitions) {
           matchesHTML += `
           <tr>
-            <td>${competitions.homeTeam.name}</td>
+            <td class="team">
+              <a href="./team.html">
+                ${competitions.homeTeam.name}
+              </a>
+            </td>
             <td class="score">${competitions.score.fullTime.homeTeam}</td>
             <td class="score">-</td>
             <td class="score">${competitions.score.fullTime.awayTeam}</td>
-            <td>${competitions.awayTeam.name}</td>
+            <td class="team">${competitions.awayTeam.name}</td>
           </tr>
               `;
         });
@@ -337,14 +341,14 @@ const getTeamId = () => {
         teamHTML += `
           <div id="team-info" class="row">
           <div class="col s12 m4 l4">
-            <div class="card">
+            <div class="card z-depth-3">
               <div class="card-image">
                 <img src=${data.crestUrl} />
               </div>
             </div>
           </div>
           <div class="col s12 m8 l8">
-            <div class="card">
+            <div class="card z-depth-3">
               <div class="card-content black-text">
                 <span class="card-title">${data.name}</span>
                 <table>
@@ -371,7 +375,7 @@ const getTeamId = () => {
         data.squad.forEach(function (player) {
           teamHTML += `
               <div class="col s12 m6 l4">
-                  <div class="card">
+                  <div class="card z-depth-3">
                     <div class="card-content center">
                       <span class="card-title grey-text text-darken-4"
                         ><p>${player.name}</p></span

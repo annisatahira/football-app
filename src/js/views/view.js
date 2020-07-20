@@ -55,7 +55,7 @@ const main = () => {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4) {
-        const content = document.querySelector("#body-content");
+        let content = document.querySelector("#body-content");
 
         if (this.status == 200) {
           content.innerHTML = xhttp.responseText;

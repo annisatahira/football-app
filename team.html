@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Football App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="src/images/favicon.png" rel="icon" type="image/png" />
+    <meta name="description" content="Football App" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="src/css/materialize.min.css" />
+    <link rel="stylesheet" href="src/css/style.css" />
+  </head>
+  <body>
+    <!-- Navigasi -->
+    <nav role="navigation">
+      <div class="nav-wrapper container">
+        <span class="brand-logo center" id="logo-container">Soccer</span>
+        <a href="./index.html" class="sidenav-trigger" data-target="nav-mobile"
+          ><i class="material-icons">arrow_back</i></a
+        >
+
+        <ul class="left hide-on-med-and-down">
+          <a href="./index.html"><i class="material-icons">arrow_back</i></a>
+        </ul>
+      </div>
+    </nav>
+    <!-- Akhir Navigasi -->
+
+    <!-- Content -->
+    <div id="team">
+      <div class="container">
+        <div id="data-team"></div>
+      </div>
+    </div>
+    <!-- Akhir Content -->
+
+    <!-- Footer -->
+    <div id="footer">
+      <app-footer></app-footer>
+    </div>
+    <!-- Akhir Footer -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <script src="src/js/materialize.min.js"></script>
+    <script src="src/js/views/team.js" type="module"></script>
+    <script></script>
+  </body>
+</html>
