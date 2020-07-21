@@ -1,5 +1,11 @@
 const leagues = [
   {
+    id: 2014,
+    name: "Primera Division",
+    area: "Spain",
+    image: "https://www.radionigeria.gov.ng/wp-content/uploads/2020/06/i.png",
+  },
+  {
     id: 2016,
     name: "Championship",
     area: "England",
@@ -61,12 +67,6 @@ const leagues = [
     area: "Netherlands",
     image:
       "https://www.gamesatlas.com/images/football/leagues/resized/eredivisie_320x320.png",
-  },
-  {
-    id: 2014,
-    name: "Primera Division",
-    area: "Spain",
-    image: "https://www.radionigeria.gov.ng/wp-content/uploads/2020/06/i.png",
   },
   {
     id: 2000,

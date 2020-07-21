@@ -1,7 +1,9 @@
 import leagues from "../data/leagues.js";
 // import "../components/items/match-item.js";
+import { getAll } from "../js/db/db.js";
 
 const base_url = "https://api.football-data.org/v2/";
+const token = "c197ffb8ed1844c38a962dd52dea74be";
 
 //blok kode yg dipanggil jika berhasil
 const status = (res) => {
@@ -83,7 +85,7 @@ const getLeaguesId = (id) => {
       caches
         .match(`${base_url}competitions/${id}`, {
           headers: {
-            "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+            "X-Auth-Token": token,
           },
         })
         .then(function (response) {
@@ -134,7 +136,7 @@ const getLeaguesId = (id) => {
 
     fetch(`${base_url}competitions/${id}`, {
       headers: {
-        "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+        "X-Auth-Token": token,
       },
     })
       .then(status)
@@ -192,7 +194,7 @@ const getStandingId = (id) => {
       caches
         .match(`${base_url}competitions/${id}/standings`, {
           headers: {
-            "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+            "X-Auth-Token": token,
           },
         })
         .then(function (response) {
@@ -245,7 +247,7 @@ const getStandingId = (id) => {
 
     fetch(`${base_url}competitions/${id}/standings`, {
       headers: {
-        "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+        "X-Auth-Token": token,
       },
     })
       .then(status)
@@ -304,7 +306,7 @@ const getMatchesId = (id) => {
       caches
         .match(`${base_url}competitions/${id}/matches`, {
           headers: {
-            "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+            "X-Auth-Token": token,
           },
         })
         .then(function (response) {
@@ -342,7 +344,7 @@ const getMatchesId = (id) => {
 
     fetch(`${base_url}competitions/${id}/matches`, {
       headers: {
-        "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+        "X-Auth-Token": token,
       },
     })
       .then(status)
@@ -383,9 +385,9 @@ const getLeaguesIdStart = () => {
   // Match URL FETCH
   if ("caches" in window) {
     caches
-      .match(`${base_url}competitions/2016`, {
+      .match(`${base_url}competitions/2014`, {
         headers: {
-          "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+          "X-Auth-Token": token,
         },
       })
       .then(function (response) {
@@ -433,9 +435,9 @@ const getLeaguesIdStart = () => {
   }
   // End of URL FETCH
 
-  fetch(`${base_url}competitions/2016`, {
+  fetch(`${base_url}competitions/2014`, {
     headers: {
-      "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+      "X-Auth-Token": token,
     },
   })
     .then(status)
@@ -487,9 +489,9 @@ const getMatchesIdStart = () => {
   // Match URL FETCH
   if ("caches" in window) {
     caches
-      .match(`${base_url}competitions/2016/matches`, {
+      .match(`${base_url}competitions/2014/matches`, {
         headers: {
-          "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+          "X-Auth-Token": token,
         },
       })
       .then(function (response) {
@@ -524,9 +526,9 @@ const getMatchesIdStart = () => {
   }
   // End of URL FETCH
 
-  fetch(`${base_url}competitions/2016/matches`, {
+  fetch(`${base_url}competitions/2014/matches`, {
     headers: {
-      "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+      "X-Auth-Token": token,
     },
   })
     .then(status)
@@ -571,9 +573,9 @@ const getStandingIdStart = () => {
   // Match URL FETCH
   if ("caches" in window) {
     caches
-      .match(`${base_url}competitions/2016/standings`, {
+      .match(`${base_url}competitions/2014/standings`, {
         headers: {
-          "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+          "X-Auth-Token": token,
         },
       })
       .then(function (response) {
@@ -586,6 +588,7 @@ const getStandingIdStart = () => {
           
             <tr>
               <td>TYPE : ${standing.type}</td>
+              <td colspan="5">click image or name to see team detail</td>
             </tr>
               `;
               standing.table.forEach(function (data) {
@@ -623,9 +626,9 @@ const getStandingIdStart = () => {
   // End of URL FETCH
 
   showSpinner();
-  fetch(`${base_url}competitions/2016/standings`, {
+  fetch(`${base_url}competitions/2014/standings`, {
     headers: {
-      "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+      "X-Auth-Token": token,
     },
   })
     .then(status)
@@ -639,6 +642,7 @@ const getStandingIdStart = () => {
             <tr>
               <td>TYPE : ${standing.type}</td>
             </tr>
+            
               `;
         standing.table.forEach(function (data) {
           standingHTML += `
@@ -685,7 +689,7 @@ const getTeamId = () => {
       caches
         .match(`${base_url}teams/${idParam}`, {
           headers: {
-            "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+            "X-Auth-Token": token,
           },
         })
         .then(function (response) {
@@ -789,7 +793,7 @@ const getTeamId = () => {
     console.log(idParam);
     fetch(`${base_url}teams/${idParam}`, {
       headers: {
-        "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+        "X-Auth-Token": token,
       },
     })
       .then(status)
@@ -890,6 +894,30 @@ const getTeamId = () => {
       .catch(error);
   });
 };
+
+const getSavedTeams = () => {
+  getAll().then(function (teams) {
+    console.log(teams);
+    // Menyusun komponen card artikel secara dinamis
+    var teamsHTML = "";
+    teams.forEach(function (team) {
+      teamsHTML += `
+                  <div class="card">
+                    <a href="./team.html?id=${team.id}">
+                      <div class="card-image waves-effect waves-block waves-light">
+                        <img src="${team.crestUrl}" />
+                      </div>
+                    </a>
+                    <div class="card-content">
+                      <span class="card-title truncate">${team.name}</span>
+                    </div>
+                  </div>
+                `;
+    });
+    // Sisipkan komponen card ke dalam elemen dengan id #body-content
+    document.getElementById("body-content").innerHTML = teamsHTML;
+  });
+};
 export {
   getLeagues,
   getLeaguesId,
@@ -899,4 +927,5 @@ export {
   getMatchesIdStart,
   getStandingIdStart,
   getTeamId,
+  getSavedTeams,
 };

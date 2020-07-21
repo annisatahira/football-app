@@ -25,14 +25,17 @@ class Competition extends HTMLElement {
           <div class="col s12 m12 l12">
             <div class="card darken-1">
               <table id="load-standings">
-                <thead>
-                  <tr class="black-text">
+                <thead class="black-text">
+                  <tr >
                     <th>Position</th>
                     <th colspan="2">Team</th>
                     <th>Played</th>
                     <th>Won</th>
                     <th>Draw</th>
                     <th>Lost</th>
+                  </tr>
+                  <tr>
+                    <th colspan="7" class="left-th">Click Image or Name to See Team Detail</th>
                   </tr>
                 </thead>
                 <tbody id="data-standings" class="soft-black">

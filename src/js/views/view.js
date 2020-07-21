@@ -8,6 +8,7 @@ import {
   getStandingIdStart,
   getStandingId,
   getTeamId,
+  getSavedTeams,
 } from "../api.js";
 
 const main = () => {
@@ -96,8 +97,8 @@ const main = () => {
                 getStandingId(id);
               });
             });
-          } else if (page === "team") {
-            getTeamId();
+          } else if (page === "saved") {
+            getSavedTeams();
           }
         } else if (this.status == 404) {
           content.innerHTML = "<p>Halaman tidak ditemukan.</p>";

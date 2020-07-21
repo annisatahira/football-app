@@ -1,0 +1,22 @@
+{
+  "name": "football-app",
+  "version": "1.0.0",
+  "description": "info football league and team application",
+  "main": "service-worker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/annisatahira/football-app.git"
+  },
+  "keywords": [
+    "pwa"
+  ],
+  "author": "Annisa Tahira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/annisatahira/football-app/issues"
+  },
+  "homepage": "https://github.com/annisatahira/football-app#readme"
+}
