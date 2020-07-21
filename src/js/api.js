@@ -127,6 +127,7 @@ const getLeaguesId = (id) => {
             });
           }
         })
+        .then(changeCellIfEmpty)
         .then(hideSpinner);
     }
     // End of URL FETCH
@@ -237,6 +238,7 @@ const getStandingId = (id) => {
             });
           }
         })
+        .then(changeCellIfEmpty)
         .then(hideSpinner);
     }
     // End of URL FETCH
@@ -333,6 +335,7 @@ const getMatchesId = (id) => {
             });
           }
         })
+        .then(changeCellIfEmpty)
         .then(hideSpinner);
     }
     // End of URL FETCH
@@ -425,6 +428,7 @@ const getLeaguesIdStart = () => {
           });
         }
       })
+      .then(changeCellIfEmpty)
       .then(hideSpinner);
   }
   // End of URL FETCH
@@ -515,6 +519,7 @@ const getMatchesIdStart = () => {
           });
         }
       })
+      .then(changeCellIfEmpty)
       .then(hideSpinner);
   }
   // End of URL FETCH
@@ -612,6 +617,7 @@ const getStandingIdStart = () => {
           });
         }
       })
+      .then(changeCellIfEmpty)
       .then(hideSpinner);
   }
   // End of URL FETCH
@@ -775,6 +781,7 @@ const getTeamId = () => {
             });
           }
         })
+        .then(changeCellIfEmpty)
         .then(hideSpinner);
     }
     // End of URL FETCH
