@@ -57,15 +57,11 @@ const hideSpinner = () => {
 };
 
 const hideMatch = () => {
-  document.getElementById("league-info").style.display = "none";
-  document.getElementById("load-match").style.display = "none";
-  document.getElementById("load-standings").style.display = "none";
+  // document.getElementById("load-standings").style.display = "none";
 };
 
 const showMatch = () => {
-  document.getElementById("league-info").style.display = "block";
-  document.getElementById("load-match").style.display = "block";
-  document.getElementById("load-standings").style.display = "block";
+  // document.getElementById("load-standings").style.display = "block";
 };
 
 const getLeagues = () => {
@@ -404,6 +400,7 @@ const getStandingIdStart = () => {
 // Get Detail Team
 const getTeamId = () => {
   console.log();
+  showSpinner();
   return new Promise(function (resolve, reject) {
     let urlParams = new URLSearchParams(window.location.search);
     let idParam = urlParams.get("id");
@@ -506,6 +503,7 @@ const getTeamId = () => {
         resolve(data);
       })
       .then(changeCellIfEmpty)
+      .then(hideSpinner)
 
       .catch(error);
   });

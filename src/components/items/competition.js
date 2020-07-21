@@ -38,7 +38,7 @@ class Competition extends HTMLElement {
                 <tbody id="data-standings" class="soft-black">
                 </tbody>
               </table>
-              
+
             </div>
           </div>
         </div>
