@@ -1,5 +1,5 @@
 import leagues from "../data/leagues.js";
-import "../components/items/match-item.js";
+// import "../components/items/match-item.js";
 
 const base_url = "https://api.football-data.org/v2/";
 
