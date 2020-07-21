@@ -290,7 +290,8 @@ const getLeaguesIdStart = () => {
             document.getElementById("league-info").innerHTML = leaguesHTML;
           });
         }
-      });
+      })
+      .then(hideSpinner);
   }
   // End of URL FETCH
 
@@ -379,7 +380,8 @@ const getMatchesIdStart = () => {
             document.getElementById("data-matches").innerHTML = matchesHTML;
           });
         }
-      });
+      })
+      .then(hideSpinner);
   }
   // End of URL FETCH
 
@@ -475,7 +477,8 @@ const getStandingIdStart = () => {
             document.getElementById("data-standings").innerHTML = standingHTML;
           });
         }
-      });
+      })
+      .then(hideSpinner);
   }
   // End of URL FETCH
 
