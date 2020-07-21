@@ -78,6 +78,59 @@ const getLeagues = () => {
 const getLeaguesId = (id) => {
   return new Promise(function (resolve, reject) {
     showSpinner();
+    // Match URL FETCH
+    if ("caches" in window) {
+      caches
+        .match(`${base_url}competitions/${id}`, {
+          headers: {
+            "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+          },
+        })
+        .then(function (response) {
+          if (response) {
+            response.json().then(function (data) {
+              console.log("ini data cache standings" + data);
+              let leaguesHTML = `
+          <div class="col s12 m12 l12">
+          <div class="card white">
+            <div class="card-content soft-black">
+              <div class="row">
+                <div class="col s6 m6 l6">
+                  <span class="card-title">${data.name}</span>
+                </div>
+                <div class="col s6 m6 l6">
+                  <a class="waves-effect waves-light btn purple lighten-1 right">Save</a>
+                </div>
+              </div>
+              <table>
+                <tr>
+                  <th>Area</th>
+                  <td>${data.area.name}</td>
+                </tr>
+                <tr>
+                  <th>Start Date</th>
+                  <td>${data.currentSeason.startDate}</td>
+                </tr>
+                <tr>
+                  <th>End Date</th>
+                  <td>${data.currentSeason.endDate}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+              `;
+
+              // Sisipkan komponen card ke dalam elemen dengan id #content
+              document.getElementById("league-info").innerHTML = leaguesHTML;
+              resolve(data);
+            });
+          }
+        })
+        .then(hideSpinner);
+    }
+    // End of URL FETCH
+
     fetch(`${base_url}competitions/${id}`, {
       headers: {
         "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
@@ -133,6 +186,61 @@ const getStandingId = (id) => {
   console.log(id);
   showSpinner();
   return new Promise(function (resolve, reject) {
+    // Match URL FETCH
+    if ("caches" in window) {
+      caches
+        .match(`${base_url}competitions/${id}/standings`, {
+          headers: {
+            "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+          },
+        })
+        .then(function (response) {
+          if (response) {
+            response.json().then(function (data) {
+              console.log("ini data cache standings" + data);
+              let standingHTML = "";
+              data.standings.forEach(function (standing) {
+                standingHTML += `
+            <tr>
+              <td>TYPE : ${standing.type}</td>
+            </tr>
+              `;
+                standing.table.forEach(function (data) {
+                  standingHTML += `
+            <tr>
+              <td>${data.position}</td>
+              <td>
+                <a href="./team.html?id=${data.team.id}">
+                  <img src=${replaceNoImage(data.team.crestUrl)} alt=${
+                    data.team.name
+                  }/>
+                </a>
+              </td>
+              <td>
+                <a href="./team.html?id=${data.team.id}">
+                  ${data.team.name}
+                </a>
+              </td>
+              <td>${data.playedGames}</td>
+              <td>${data.won}</td>
+              <td>${data.draw}</td>
+              <td>${data.lost}</td>
+            </tr>
+              `;
+                });
+              });
+              // Sisipkan komponen card ke dalam elemen dengan id #content
+              document.getElementById(
+                "data-standings"
+              ).innerHTML = standingHTML;
+              resolve(data);
+            });
+          }
+        })
+        .then(hideSpinner);
+    }
+    // End of URL FETCH
+
     fetch(`${base_url}competitions/${id}/standings`, {
       headers: {
         "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
