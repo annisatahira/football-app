@@ -5,7 +5,9 @@ class Competition extends HTMLElement {
 
   render() {
     this.innerHTML = `
-    <div id="league-info" class="row"></div>
+    
+    <div id="league-info" class="row">
+    </div>
 
     <div class="leagues-data row">
       <div class="col s12 m12 l12">
@@ -22,7 +24,7 @@ class Competition extends HTMLElement {
         <div class="row">
           <div class="col s12 m12 l12">
             <div class="card darken-1">
-              <table>
+              <table id="load-standings">
                 <thead>
                   <tr class="black-text">
                     <th>Position</th>
@@ -33,17 +35,21 @@ class Competition extends HTMLElement {
                     <th>Lost</th>
                   </tr>
                 </thead>
-                <tbody id="data-standings" class="soft-black"></tbody>
+                <tbody id="data-standings" class="soft-black">
+                </tbody>
               </table>
+              
             </div>
           </div>
         </div>
+        
       </div>
+      
       <div id="all-match" class="col s12 m12 l12 tab-data">
         <div class="row">
           <div class="col s12 m12 l12">
             <div class="card darken-1">
-              <table>
+              <table id="load-match">
                 <thead>
                   <tr class="black-text">
                     <th>Home</th>
@@ -58,7 +64,12 @@ class Competition extends HTMLElement {
         </div>
       </div>
     </div>
-  </div>`;
+    
+    <div id="loading">
+      <img id="loading-image" src="src/images/loader.gif" alt="Loading..." />
+    </div>
+  </div>
+  `;
   }
 }
 

@@ -58,7 +58,11 @@
   cursor: pointer;
 }
 
-.team:hover {
+a {
+  color: #5f5a5a;
+}
+
+a:hover {
   color: purple;
 }
 

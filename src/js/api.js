@@ -31,7 +31,7 @@ const changeCellIfEmpty = () => {
 
   for (let i = 0; i < matchEl.length; i++) {
     if (matchEl[i].innerText === "null") {
-      matchEl[i].innerText = "Not Available";
+      matchEl[i].innerText = "-";
     }
   }
 };
@@ -46,6 +46,26 @@ const replaceNoImage = (image) => {
   } else {
     return image;
   }
+};
+
+const showSpinner = () => {
+  document.getElementById("loading").style.display = "block";
+};
+
+const hideSpinner = () => {
+  document.getElementById("loading").style.display = "none";
+};
+
+const hideMatch = () => {
+  document.getElementById("league-info").style.display = "none";
+  document.getElementById("load-match").style.display = "none";
+  document.getElementById("load-standings").style.display = "none";
+};
+
+const showMatch = () => {
+  document.getElementById("league-info").style.display = "block";
+  document.getElementById("load-match").style.display = "block";
+  document.getElementById("load-standings").style.display = "block";
 };
 
 const getLeagues = () => {
@@ -69,6 +89,8 @@ const getLeagues = () => {
 //melakukan req data leagues info
 const getLeaguesId = (id) => {
   return new Promise(function (resolve, reject) {
+    hideMatch();
+    showSpinner();
     fetch(`${base_url}competitions/${id}`, {
       headers: {
         "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
@@ -114,6 +136,8 @@ const getLeaguesId = (id) => {
         resolve(data);
       })
       .then(changeCellIfEmpty)
+      .then(hideSpinner)
+      .then(showMatch)
 
       .catch(error);
   });
@@ -121,6 +145,8 @@ const getLeaguesId = (id) => {
 
 const getStandingId = (id) => {
   console.log(id);
+  hideMatch();
+  showSpinner();
   return new Promise(function (resolve, reject) {
     fetch(`${base_url}competitions/${id}/standings`, {
       headers: {
@@ -142,10 +168,18 @@ const getStandingId = (id) => {
             standingHTML += `
             <tr>
               <td>${data.position}</td>
-              <td><img src=${replaceNoImage(data.team.crestUrl)} alt=${
+              <td>
+                <a href="./team.html?id=${data.team.id}">
+                  <img src=${replaceNoImage(data.team.crestUrl)} alt=${
               data.team.name
-            }/></td>
-              <td>${data.team.name}</td>
+            }/>
+                </a>
+              </td>
+              <td>
+                <a href="./team.html?id=${data.team.id}">
+                  ${data.team.name}
+                </a>
+              </td>
               <td>${data.playedGames}</td>
               <td>${data.won}</td>
               <td>${data.draw}</td>
@@ -159,6 +193,8 @@ const getStandingId = (id) => {
         resolve(data);
       })
       .then(changeCellIfEmpty)
+      .then(hideSpinner)
+      .then(showMatch)
 
       .catch(error);
   });
@@ -167,6 +203,8 @@ const getStandingId = (id) => {
 //melakukan req data json competition id
 const getMatchesId = (id) => {
   console.log(id);
+  hideMatch();
+  showSpinner();
   return new Promise(function (resolve, reject) {
     fetch(`${base_url}competitions/${id}/matches`, {
       headers: {
@@ -181,11 +219,17 @@ const getMatchesId = (id) => {
         data.matches.forEach(function (competitions) {
           matchesHTML += `
           <tr>
-            <td class="team">${competitions.homeTeam.name}</td>
+            <td class="team">
+              <a href="./team.html?id=${competitions.homeTeam.id}">
+                ${competitions.homeTeam.name}
+              </a>
+            </td>
             <td class="score">${competitions.score.fullTime.homeTeam}</td>
             <td class="score">-</td>
             <td class="score">${competitions.score.fullTime.awayTeam}</td>
-            <td class="team">${competitions.awayTeam.name}</td>
+            <td class="team"><a href="./team.html?id=${competitions.awayTeam.id}">
+            ${competitions.awayTeam.name}
+          </a></td>
           </tr>
               `;
         });
@@ -194,6 +238,8 @@ const getMatchesId = (id) => {
         resolve(data);
       })
       .then(changeCellIfEmpty)
+      .then(hideSpinner)
+      .then(showMatch)
 
       .catch(error);
   });
@@ -283,7 +329,9 @@ const getMatchesIdStart = () => {
             <td class="score">${competitions.score.fullTime.homeTeam}</td>
             <td class="score">-</td>
             <td class="score">${competitions.score.fullTime.awayTeam}</td>
-            <td class="team">${competitions.awayTeam.name}</td>
+            <td class="team"><a href="./team.html?id=${competitions.awayTeam.id}">
+            ${competitions.awayTeam.name}
+          </a></td>
           </tr>
               `;
         });
@@ -296,9 +344,11 @@ const getMatchesIdStart = () => {
       .catch(error);
   });
 };
+
 const getStandingIdStart = () => {
   console.log();
   return new Promise(function (resolve, reject) {
+    showSpinner();
     fetch(`${base_url}competitions/2016/standings`, {
       headers: {
         "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
@@ -311,6 +361,7 @@ const getStandingIdStart = () => {
         let standingHTML = "";
         data.standings.forEach(function (standing) {
           standingHTML += `
+          
             <tr>
               <td>TYPE : ${standing.type}</td>
             </tr>
@@ -319,10 +370,18 @@ const getStandingIdStart = () => {
             standingHTML += `
             <tr>
               <td>${data.position}</td>
-              <td><img src=${replaceNoImage(data.team.crestUrl)} alt=${
+              <td>
+                <a href="./team.html?id=${data.team.id}">
+                  <img src=${replaceNoImage(data.team.crestUrl)} alt=${
               data.team.name
-            }/></td>
-              <td>${data.team.name}</td>
+            }/>
+                </a>
+              </td>
+              <td>
+                <a href="./team.html?id=${data.team.id}">
+                  ${data.team.name}
+                </a>
+              </td>
               <td>${data.playedGames}</td>
               <td>${data.won}</td>
               <td>${data.draw}</td>
@@ -336,6 +395,7 @@ const getStandingIdStart = () => {
         resolve(data);
       })
       .then(changeCellIfEmpty)
+      .then(hideSpinner)
 
       .catch(error);
   });
