@@ -566,6 +566,111 @@ const getTeamId = () => {
   return new Promise(function (resolve, reject) {
     let urlParams = new URLSearchParams(window.location.search);
     let idParam = urlParams.get("id");
+    // Match URL FETCH
+    if ("caches" in window) {
+      caches
+        .match(`${base_url}teams/${idParam}`, {
+          headers: {
+            "X-Auth-Token": "c197ffb8ed1844c38a962dd52dea74be",
+          },
+        })
+        .then(function (response) {
+          if (response) {
+            response.json().then(function (data) {
+              let teamHTML = "";
+
+              teamHTML += `
+          <div id="team-info" class="row">
+          <div class="col s12 m4 l4">
+            <div class="card z-depth-3">
+              <div class="card-image">
+                <img src=${replaceNoImage(data.crestUrl)} />
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m8 l8">
+            <div class="card z-depth-3">
+              <div class="card-content black-text">
+                <span class="card-title">${data.name}</span>
+                
+                <table>
+                  <tr>
+                    <th class="left">Addres</th>
+                    <td>${data.address}</td>
+                  </tr>
+                  <tr>
+                    <th class="left">Email</th>
+                    <td>${data.email}</td>
+                  </tr>
+                  <tr>
+                    <th class="left">Venue</th>
+                    <td>${data.venue}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="team-squad">
+            <h1>Meet The Squad</h1>
+            <div class="row">`;
+              data.squad.forEach(function (player) {
+                teamHTML += `
+              <div class="col s12 m6 l6 xl4">
+                  <div class="card z-depth-3">
+                    <div class="card-content center">
+                      <span class="card-title grey-text text-darken-4"
+                        ><p>${player.name}</p></span
+                      >
+                      <p>${player.position}</p>
+                      <a
+                        class="btn-player waves-effect waves-light purple lighten-1 btn-small activator"
+                        >Detail</a
+                      >
+                    </div>
+                    <div class="card-reveal">
+                      <span class="card-title black-text text-darken-4"
+                        ><i class="material-icons right">close</i></span
+                      >
+                      <table>
+                        <tr class="black-text">
+                          <th class="left">Birth</th>
+                          <td>${player.dateOfBirth}</td>
+                        </tr>
+                        <tr class="black-text">
+                          <th class="left">Country of Birth</th>
+                          <td>${player.countryOfBirth}</td>
+                        </tr>
+                        <tr class="black-text">
+                          <th class="left">Nationality</th>
+                          <td>${player.nationality}</td>
+                        </tr>
+                        <tr class="black-text">
+                          <th class="left">Shirt Number</th>
+                          <td>${player.shirtNumber}</td>
+                        </tr>
+                        <tr class="black-text">
+                          <th class="left">Role</th>
+                          <td>${player.role}</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                `;
+              });
+              ` </div>
+          </div>`;
+              // Sisipkan komponen card ke dalam elemen dengan id #content
+              document.getElementById("data-team").innerHTML = teamHTML;
+              resolve(data);
+            });
+          }
+        })
+        .then(hideSpinner);
+    }
+    // End of URL FETCH
+
     console.log(idParam);
     fetch(`${base_url}teams/${idParam}`, {
       headers: {
