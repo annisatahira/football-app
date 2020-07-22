@@ -1024,6 +1024,7 @@ const getDeletedTeamId = () => {
   let idParam = urlParams.get("id");
   console.log(idParam);
   deleteSavedTeam(idParam);
+  $(location).attr("href", "index.html#saved");
 };
 
 export {

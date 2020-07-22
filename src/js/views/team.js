@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const btnSave = document.getElementById("save");
   const btnDelete = document.getElementById("delete");
   btnDelete.style.display = "none";
+  btnSave.style.display = "block";
 
   let itemTeam;
 
@@ -20,16 +21,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ambil team lalu tampilkan
     getSavedTeamById();
-
-    if (btnDelete.onclick) {
-      console.log("hi");
-    }
   } else {
     itemTeam = getTeamId();
   }
 
   btnSave.onclick = function () {
-    console.log("Tombol FAB di klik.");
+    btnDelete.style.display = "block";
+    btnSave.style.display = "none";
+
     itemTeam.then(function (team) {
       saveTeamForLater(team);
     });
@@ -37,11 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   btnDelete.onclick = function () {
     console.log("Tombol FAB Delete di klik.");
-    getDeletedTeamId();
-    btnSave.style.display = "block";
+
     btnDelete.style.display = "none";
-    // itemTeam.then(function (team) {
-    //   deleteSavedTeam(team);
-    // });
+    getDeletedTeamId();
   };
 });
