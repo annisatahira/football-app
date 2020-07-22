@@ -1,6 +1,6 @@
 import leagues from "../data/leagues.js";
 // import "../components/items/match-item.js";
-import { getAll, getById, deleteSavedTeam } from "../js/db/db.js";
+import { getAll, getById, deleteSavedTeam, checkTeamId } from "../js/db/db.js";
 
 const base_url = "https://api.football-data.org/v2/";
 const token = "c197ffb8ed1844c38a962dd52dea74be";
@@ -786,6 +786,7 @@ const getTeamId = () => {
           }
         })
         .then(changeCellIfEmpty)
+        .then(checkTeamId(idParam))
         .then(hideSpinner);
     }
     // End of URL FETCH

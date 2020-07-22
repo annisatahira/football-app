@@ -1,7 +1,7 @@
 import "../idb.js";
 import "../db/db.js";
 import { getTeamId, getSavedTeamById, getDeletedTeamId } from "../api.js";
-import { saveTeamForLater, deleteSavedTeam } from "../db/db.js";
+import { saveTeamForLater } from "../db/db.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   let urlParams = new URLSearchParams(window.location.search);

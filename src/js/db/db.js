@@ -35,6 +35,32 @@ const deleteSavedTeam = (id) => {
     });
 };
 
+const checkTeamId = (idParam) => {
+  dbPromised
+    .then(function (db) {
+      let tx = db.transaction("teams", "readonly");
+      let store = tx.objectStore("teams");
+      return store.openCursor();
+    })
+    .then(function checkTeam(cursor) {
+      if (!cursor) {
+        return;
+      }
+      console.log("Posisi cursos: ", cursor.key);
+      for (let id in cursor.value) {
+        console.log(cursor.value[id]);
+      }
+      if (cursor.key === parseInt(idParam)) {
+        document.getElementById("delete").style.display = "block";
+        document.getElementById("save").style.display = "none";
+      }
+      return cursor.continue().then(checkTeam);
+    })
+    .then(function () {
+      console.log("Tidak ada data lain.");
+    });
+};
+
 const getAll = () => {
   return new Promise(function (resolve, reject) {
     dbPromised
@@ -54,8 +80,8 @@ const getById = (id) => {
   return new Promise(function (resolve, reject) {
     dbPromised
       .then(function (db) {
-        var tx = db.transaction("teams", "readonly");
-        var store = tx.objectStore("teams");
+        let tx = db.transaction("teams", "readonly");
+        let store = tx.objectStore("teams");
         console.log("ini id dari function getbyid " + id);
         return store.get(parseInt(id));
       })
@@ -67,4 +93,4 @@ const getById = (id) => {
   });
 };
 
-export { saveTeamForLater, deleteSavedTeam, getAll, getById };
+export { saveTeamForLater, deleteSavedTeam, getAll, getById, checkTeamId };
