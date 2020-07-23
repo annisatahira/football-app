@@ -1,6 +1,11 @@
+import "regenerator-runtime";
+import "../css/style.css";
+import "../css/materialize.min.css";
+import "./materialize.min.js";
+
 import "../components/app-nav.js";
 import "../components/items/competition.js";
-import "../js/idb.js";
+
 import "../js/db/db.js";
 import { requestPermission } from "./notification.js";
 

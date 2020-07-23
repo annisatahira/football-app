@@ -4,7 +4,8 @@
   "description": "info football league and team application",
   "main": "service-worker.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --config webpack.prod.js",
+    "start-dev": "webpack-dev-server --config webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "idb": "^5.0.4",
     "jquery": "^3.5.1",
     "regenerator-runtime": "^0.13.5"
   }

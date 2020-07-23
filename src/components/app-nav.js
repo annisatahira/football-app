@@ -1,4 +1,4 @@
-class Nav extends HTMLElement {
+class NavApp extends HTMLElement {
   connectedCallback() {
     this.render();
   }
@@ -18,4 +18,4 @@ class Nav extends HTMLElement {
   }
 }
 
-customElements.define("app-nav", Nav);
+customElements.define("app-nav", NavApp);

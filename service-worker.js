@@ -27,9 +27,9 @@ var urlsToCache = [
   "/src/images/no-image.svg",
 
   "/src/js/views/view.js",
-  "/src/js/views/team.js",
+  "/src/js/team.js",
   "/src/js/api.js",
-  "/src/js/main.js",
+  "/src/js/index.js",
   "/src/js/materialize.min.js",
 ];
 

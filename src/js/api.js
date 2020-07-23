@@ -1,6 +1,9 @@
 import leagues from "../data/leagues.js";
-// import "../components/items/match-item.js";
 import { getAll, getById, deleteSavedTeam, checkTeamId } from "../js/db/db.js";
+import standingItem from "../components/items/standings.js";
+import matchItem from "../components/items/match.js";
+import leagueItem from "../components/items/league.js";
+import { teamItem, savedTeam } from "../components/items/team.js";
 
 const base_url = "https://api.football-data.org/v2/";
 const token = "c197ffb8ed1844c38a962dd52dea74be";
@@ -28,6 +31,16 @@ const error = (err) => {
   console.log(err);
 };
 
+const fetchApi = (url) => {
+  fetch(url, {
+    headers: {
+      "X-Auth-Token": token,
+    },
+  })
+    .then(status)
+    .then(json);
+};
+
 const changeCellIfEmpty = () => {
   const matchEl = document.querySelectorAll("td");
 
@@ -39,10 +52,6 @@ const changeCellIfEmpty = () => {
 };
 
 const replaceNoImage = (image) => {
-  // let http = new XMLHttpRequest();
-  // http.open("HEAD", image, false);
-  // http.send();
-
   if (image === "null" || image === "") {
     return (image = "src/images/no-image.svg");
   } else {
@@ -91,40 +100,7 @@ const getLeaguesId = (id) => {
         .then(function (response) {
           if (response) {
             response.json().then(function (data) {
-              console.log("ini data cache standings" + data);
-              let leaguesHTML = `
-          <div class="col s12 m12 l12">
-          <div class="card white">
-            <div class="card-content soft-black">
-              <div class="row">
-                <div class="col s6 m6 l6">
-                  <span class="card-title">${data.name}</span>
-                </div>
-                <div class="col s6 m6 l6">
-                  <a class="waves-effect waves-light btn purple lighten-1 right">Save</a>
-                </div>
-              </div>
-              <table>
-                <tr>
-                  <th>Area</th>
-                  <td>${data.area.name}</td>
-                </tr>
-                <tr>
-                  <th>Start Date</th>
-                  <td>${data.currentSeason.startDate}</td>
-                </tr>
-                <tr>
-                  <th>End Date</th>
-                  <td>${data.currentSeason.endDate}</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-              `;
-
-              // Sisipkan komponen card ke dalam elemen dengan id #content
-              document.getElementById("league-info").innerHTML = leaguesHTML;
+              leagueItem(data);
               resolve(data);
             });
           }
@@ -142,40 +118,7 @@ const getLeaguesId = (id) => {
       .then(status)
       .then(json)
       .then(function (data) {
-        console.log("ini yg info" + data);
-        let leaguesHTML = `
-          <div class="col s12 m12 l12">
-          <div class="card white">
-            <div class="card-content soft-black">
-              <div class="row">
-                <div class="col s6 m6 l6">
-                  <span class="card-title">${data.name}</span>
-                </div>
-                <div class="col s6 m6 l6">
-                  <a class="waves-effect waves-light btn purple lighten-1 right">Save</a>
-                </div>
-              </div>
-              <table>
-                <tr>
-                  <th>Area</th>
-                  <td>${data.area.name}</td>
-                </tr>
-                <tr>
-                  <th>Start Date</th>
-                  <td>${data.currentSeason.startDate}</td>
-                </tr>
-                <tr>
-                  <th>End Date</th>
-                  <td>${data.currentSeason.endDate}</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-              `;
-
-        // Sisipkan komponen card ke dalam elemen dengan id #content
-        document.getElementById("league-info").innerHTML = leaguesHTML;
+        leagueItem(data);
         resolve(data);
       })
       .then(changeCellIfEmpty)
@@ -186,7 +129,6 @@ const getLeaguesId = (id) => {
 };
 
 const getStandingId = (id) => {
-  console.log(id);
   showSpinner();
   return new Promise(function (resolve, reject) {
     // Match URL FETCH
@@ -200,42 +142,7 @@ const getStandingId = (id) => {
         .then(function (response) {
           if (response) {
             response.json().then(function (data) {
-              console.log("ini data cache standings" + data);
-              let standingHTML = "";
-              data.standings.forEach(function (standing) {
-                standingHTML += `
-            <tr>
-              <td>TYPE : ${standing.type}</td>
-            </tr>
-              `;
-                standing.table.forEach(function (data) {
-                  standingHTML += `
-            <tr>
-              <td>${data.position}</td>
-              <td>
-                <a href="./team.html?id=${data.team.id}">
-                  <img src=${replaceNoImage(data.team.crestUrl)} alt=${
-                    data.team.name
-                  }/>
-                </a>
-              </td>
-              <td>
-                <a href="./team.html?id=${data.team.id}">
-                  ${data.team.name}
-                </a>
-              </td>
-              <td>${data.playedGames}</td>
-              <td>${data.won}</td>
-              <td>${data.draw}</td>
-              <td>${data.lost}</td>
-            </tr>
-              `;
-                });
-              });
-              // Sisipkan komponen card ke dalam elemen dengan id #content
-              document.getElementById(
-                "data-standings"
-              ).innerHTML = standingHTML;
+              standingItem(data);
               resolve(data);
             });
           }
@@ -253,40 +160,7 @@ const getStandingId = (id) => {
       .then(status)
       .then(json)
       .then(function (data) {
-        console.log(data);
-        let standingHTML = "";
-        data.standings.forEach(function (standing) {
-          standingHTML += `
-            <tr>
-              <td>TYPE : ${standing.type}</td>
-            </tr>
-              `;
-          standing.table.forEach(function (data) {
-            standingHTML += `
-            <tr>
-              <td>${data.position}</td>
-              <td>
-                <a href="./team.html?id=${data.team.id}">
-                  <img src=${replaceNoImage(data.team.crestUrl)} alt=${
-              data.team.name
-            }/>
-                </a>
-              </td>
-              <td>
-                <a href="./team.html?id=${data.team.id}">
-                  ${data.team.name}
-                </a>
-              </td>
-              <td>${data.playedGames}</td>
-              <td>${data.won}</td>
-              <td>${data.draw}</td>
-              <td>${data.lost}</td>
-            </tr>
-              `;
-          });
-        });
-        // Sisipkan komponen card ke dalam elemen dengan id #content
-        document.getElementById("data-standings").innerHTML = standingHTML;
+        standingItem(data);
         resolve(data);
       })
       .then(changeCellIfEmpty)
@@ -298,7 +172,6 @@ const getStandingId = (id) => {
 
 //melakukan req data json competition id
 const getMatchesId = (id) => {
-  console.log(id);
   showSpinner();
   return new Promise(function (resolve, reject) {
     // Match URL FETCH
@@ -313,26 +186,7 @@ const getMatchesId = (id) => {
           if (response) {
             response.json().then(function (data) {
               console.log("ini data cache standings" + data);
-              let matchesHTML = "";
-              data.matches.forEach(function (competitions) {
-                matchesHTML += `
-          <tr>
-            <td class="team">
-              <a href="./team.html?id=${competitions.homeTeam.id}">
-                ${competitions.homeTeam.name}
-              </a>
-            </td>
-            <td class="score">${competitions.score.fullTime.homeTeam}</td>
-            <td class="score">-</td>
-            <td class="score">${competitions.score.fullTime.awayTeam}</td>
-            <td class="team"><a href="./team.html?id=${competitions.awayTeam.id}">
-            ${competitions.awayTeam.name}
-          </a></td>
-          </tr>
-              `;
-              });
-              // Sisipkan komponen card ke dalam elemen dengan id #content
-              document.getElementById("data-matches").innerHTML = matchesHTML;
+              matchItem(data);
               resolve(data);
             });
           }
@@ -351,26 +205,7 @@ const getMatchesId = (id) => {
       .then(json)
       .then(function (data) {
         console.log(data);
-        let matchesHTML = "";
-        data.matches.forEach(function (competitions) {
-          matchesHTML += `
-          <tr>
-            <td class="team">
-              <a href="./team.html?id=${competitions.homeTeam.id}">
-                ${competitions.homeTeam.name}
-              </a>
-            </td>
-            <td class="score">${competitions.score.fullTime.homeTeam}</td>
-            <td class="score">-</td>
-            <td class="score">${competitions.score.fullTime.awayTeam}</td>
-            <td class="team"><a href="./team.html?id=${competitions.awayTeam.id}">
-            ${competitions.awayTeam.name}
-          </a></td>
-          </tr>
-              `;
-        });
-        // Sisipkan komponen card ke dalam elemen dengan id #content
-        document.getElementById("data-matches").innerHTML = matchesHTML;
+        matchItem(data);
         resolve(data);
       })
       .then(changeCellIfEmpty)
@@ -394,39 +229,7 @@ const getLeaguesIdStart = () => {
         if (response) {
           response.json().then(function (data) {
             console.log("ini yg icache nfo" + data);
-            let leaguesHTML = `
-          <div class="col s12 m12 l12">
-          <div class="card white">
-            <div class="card-content soft-black">
-              <div class="row">
-                <div class="col s6 m6 l6">
-                  <span class="card-title">${data.name}</span>
-                </div>
-                <div class="col s6 m6 l6">
-                  <a class="waves-effect waves-light btn purple lighten-1 right">Save</a>
-                </div>
-              </div>
-              <table>
-                <tr>
-                  <th>Area</th>
-                  <td>${data.area.name}</td>
-                </tr>
-                <tr>
-                  <th>Start Date</th>
-                  <td>${data.currentSeason.startDate}</td>
-                </tr>
-                <tr>
-                  <th>End Date</th>
-                  <td>${data.currentSeason.endDate}</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-              `;
-
-            // Sisipkan komponen card ke dalam elemen dengan id #content
-            document.getElementById("league-info").innerHTML = leaguesHTML;
+            leagueItem(data);
           });
         }
       })
@@ -443,48 +246,14 @@ const getLeaguesIdStart = () => {
     .then(status)
     .then(json)
     .then(function (data) {
-      console.log("ini yg info" + data);
-      let leaguesHTML = `
-          <div class="col s12 m12 l12">
-          <div class="card white">
-            <div class="card-content soft-black">
-              <div class="row">
-                <div class="col s6 m6 l6">
-                  <span class="card-title">${data.name}</span>
-                </div>
-                <div class="col s6 m6 l6">
-                  <a class="waves-effect waves-light btn purple lighten-1 right">Save</a>
-                </div>
-              </div>
-              <table>
-                <tr>
-                  <th>Area</th>
-                  <td>${data.area.name}</td>
-                </tr>
-                <tr>
-                  <th>Start Date</th>
-                  <td>${data.currentSeason.startDate}</td>
-                </tr>
-                <tr>
-                  <th>End Date</th>
-                  <td>${data.currentSeason.endDate}</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-              `;
-
-      // Sisipkan komponen card ke dalam elemen dengan id #content
-      document.getElementById("league-info").innerHTML = leaguesHTML;
+      leagueItem(data);
     })
     .then(changeCellIfEmpty)
-
     .catch(error);
 };
 
 //matches awal
-//melakukan req data json competition match
+
 const getMatchesIdStart = () => {
   // Match URL FETCH
   if ("caches" in window) {
@@ -497,27 +266,7 @@ const getMatchesIdStart = () => {
       .then(function (response) {
         if (response) {
           response.json().then(function (data) {
-            console.log("ini yg cache match" + data);
-            let matchesHTML = "";
-            data.matches.forEach(function (competitions) {
-              matchesHTML += `
-          <tr>
-            <td class="team">
-              <a href="./team.html?id=${competitions.homeTeam.id}">
-                ${competitions.homeTeam.name}
-              </a>
-            </td>
-            <td class="score">${competitions.score.fullTime.homeTeam}</td>
-            <td class="score">-</td>
-            <td class="score">${competitions.score.fullTime.awayTeam}</td>
-            <td class="team"><a href="./team.html?id=${competitions.awayTeam.id}">
-            ${competitions.awayTeam.name}
-          </a></td>
-          </tr>
-              `;
-            });
-            // Sisipkan komponen card ke dalam elemen dengan id #content
-            document.getElementById("data-matches").innerHTML = matchesHTML;
+            matchItem(data);
           });
         }
       })
@@ -534,33 +283,7 @@ const getMatchesIdStart = () => {
     .then(status)
     .then(json)
     .then(function (data) {
-      console.log(data);
-
-      // let dataMatch = data.matches;
-
-      // const elMatch = document.querySelector("#data-matches");
-      // const matchList = new List(elMatch, "match-item", dataMatch);
-      // matchList.render();
-      let matchesHTML = "";
-      data.matches.forEach(function (competitions) {
-        matchesHTML += `
-          <tr>
-            <td class="team">
-              <a href="./team.html?id=${competitions.homeTeam.id}">
-                ${competitions.homeTeam.name}
-              </a>
-            </td>
-            <td class="score">${competitions.score.fullTime.homeTeam}</td>
-            <td class="score">-</td>
-            <td class="score">${competitions.score.fullTime.awayTeam}</td>
-            <td class="team"><a href="./team.html?id=${competitions.awayTeam.id}">
-            ${competitions.awayTeam.name}
-          </a></td>
-          </tr>
-              `;
-      });
-      // Sisipkan komponen card ke dalam elemen dengan id #content
-      document.getElementById("data-matches").innerHTML = matchesHTML;
+      matchItem(data);
     })
     .then(changeCellIfEmpty)
 
@@ -568,8 +291,6 @@ const getMatchesIdStart = () => {
 };
 
 const getStandingIdStart = () => {
-  console.log();
-
   // Match URL FETCH
   if ("caches" in window) {
     caches
@@ -581,42 +302,7 @@ const getStandingIdStart = () => {
       .then(function (response) {
         if (response) {
           response.json().then(function (data) {
-            console.log("ini data cache standings" + data);
-            let standingHTML = "";
-            data.standings.forEach(function (standing) {
-              standingHTML += `
-          
-            <tr>
-              <td>TYPE : ${standing.type}</td>
-              <td colspan="5">click image or name to see team detail</td>
-            </tr>
-              `;
-              standing.table.forEach(function (data) {
-                standingHTML += `
-            <tr>
-              <td>${data.position}</td>
-              <td>
-                <a href="./team.html?id=${data.team.id}">
-                  <img src=${replaceNoImage(data.team.crestUrl)} alt=${
-                  data.team.name
-                }/>
-                </a>
-              </td>
-              <td>
-                <a href="./team.html?id=${data.team.id}">
-                  ${data.team.name}
-                </a>
-              </td>
-              <td>${data.playedGames}</td>
-              <td>${data.won}</td>
-              <td>${data.draw}</td>
-              <td>${data.lost}</td>
-            </tr>
-              `;
-              });
-            });
-            // Sisipkan komponen card ke dalam elemen dengan id #content
-            document.getElementById("data-standings").innerHTML = standingHTML;
+            standingItem(data);
           });
         }
       })
@@ -634,42 +320,7 @@ const getStandingIdStart = () => {
     .then(status)
     .then(json)
     .then(function (data) {
-      console.log(data);
-      let standingHTML = "";
-      data.standings.forEach(function (standing) {
-        standingHTML += `
-          
-            <tr>
-              <td>TYPE : ${standing.type}</td>
-            </tr>
-            
-              `;
-        standing.table.forEach(function (data) {
-          standingHTML += `
-            <tr>
-              <td>${data.position}</td>
-              <td>
-                <a href="./team.html?id=${data.team.id}">
-                  <img src=${replaceNoImage(data.team.crestUrl)} alt=${
-            data.team.name
-          }/>
-                </a>
-              </td>
-              <td>
-                <a href="./team.html?id=${data.team.id}">
-                  ${data.team.name}
-                </a>
-              </td>
-              <td>${data.playedGames}</td>
-              <td>${data.won}</td>
-              <td>${data.draw}</td>
-              <td>${data.lost}</td>
-            </tr>
-              `;
-        });
-      });
-      // Sisipkan komponen card ke dalam elemen dengan id #content
-      document.getElementById("data-standings").innerHTML = standingHTML;
+      standingItem(data);
     })
     .then(changeCellIfEmpty)
     .then(hideSpinner)
@@ -695,92 +346,7 @@ const getTeamId = () => {
         .then(function (response) {
           if (response) {
             response.json().then(function (data) {
-              let teamHTML = "";
-
-              teamHTML += `
-          <div id="team-info" class="row">
-          <div class="col s12 m4 l4">
-            <div class="card z-depth-3">
-              <div class="card-image">
-                <img src=${replaceNoImage(data.crestUrl)} />
-              </div>
-            </div>
-          </div>
-          <div class="col s12 m8 l8">
-            <div class="card z-depth-3">
-              <div class="card-content black-text">
-                <span class="card-title">${data.name}</span>
-                
-                <table>
-                  <tr>
-                    <th class="left">Addres</th>
-                    <td>${data.address}</td>
-                  </tr>
-                  <tr>
-                    <th class="left">Email</th>
-                    <td>${data.email}</td>
-                  </tr>
-                  <tr>
-                    <th class="left">Venue</th>
-                    <td>${data.venue}</td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="team-squad">
-            <h1>Meet The Squad</h1>
-            <div class="row">`;
-              data.squad.forEach(function (player) {
-                teamHTML += `
-              <div class="col s12 m6 l6 xl4">
-                  <div class="card z-depth-3">
-                    <div class="card-content center">
-                      <span class="card-title grey-text text-darken-4"
-                        ><p>${player.name}</p></span
-                      >
-                      <p>${player.position}</p>
-                      <a
-                        class="btn-player waves-effect waves-light purple lighten-1 btn-small activator"
-                        >Detail</a
-                      >
-                    </div>
-                    <div class="card-reveal">
-                      <span class="card-title black-text text-darken-4"
-                        ><i class="material-icons right">close</i></span
-                      >
-                      <table>
-                        <tr class="black-text">
-                          <th class="left">Birth</th>
-                          <td>${player.dateOfBirth}</td>
-                        </tr>
-                        <tr class="black-text">
-                          <th class="left">Country of Birth</th>
-                          <td>${player.countryOfBirth}</td>
-                        </tr>
-                        <tr class="black-text">
-                          <th class="left">Nationality</th>
-                          <td>${player.nationality}</td>
-                        </tr>
-                        <tr class="black-text">
-                          <th class="left">Shirt Number</th>
-                          <td>${player.shirtNumber}</td>
-                        </tr>
-                        <tr class="black-text">
-                          <th class="left">Role</th>
-                          <td>${player.role}</td>
-                        </tr>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-                `;
-              });
-              ` </div>
-          </div>`;
-              // Sisipkan komponen card ke dalam elemen dengan id #content
-              document.getElementById("data-team").innerHTML = teamHTML;
+              teamItem(data);
               resolve(data);
             });
           }
@@ -800,93 +366,7 @@ const getTeamId = () => {
       .then(status)
       .then(json)
       .then(function (data) {
-        console.log(data);
-        let teamHTML = "";
-
-        teamHTML += `
-          <div id="team-info" class="row">
-          <div class="col s12 m4 l4">
-            <div class="card z-depth-3">
-              <div class="card-image">
-                <img src=${replaceNoImage(data.crestUrl)} />
-              </div>
-            </div>
-          </div>
-          <div class="col s12 m8 l8">
-            <div class="card z-depth-3">
-              <div class="card-content black-text">
-                <span class="card-title">${data.name}</span>
-                
-                <table>
-                  <tr>
-                    <th class="left">Addres</th>
-                    <td>${data.address}</td>
-                  </tr>
-                  <tr>
-                    <th class="left">Email</th>
-                    <td>${data.email}</td>
-                  </tr>
-                  <tr>
-                    <th class="left">Venue</th>
-                    <td>${data.venue}</td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="team-squad">
-            <h1>Meet The Squad</h1>
-            <div class="row">`;
-        data.squad.forEach(function (player) {
-          teamHTML += `
-              <div class="col s12 m6 l6 xl4">
-                  <div class="card z-depth-3">
-                    <div class="card-content center">
-                      <span class="card-title grey-text text-darken-4"
-                        ><p>${player.name}</p></span
-                      >
-                      <p>${player.position}</p>
-                      <a
-                        class="btn-player waves-effect waves-light purple lighten-1 btn-small activator"
-                        >Detail</a
-                      >
-                    </div>
-                    <div class="card-reveal">
-                      <span class="card-title black-text text-darken-4"
-                        ><i class="material-icons right">close</i></span
-                      >
-                      <table>
-                        <tr class="black-text">
-                          <th class="left">Birth</th>
-                          <td>${player.dateOfBirth}</td>
-                        </tr>
-                        <tr class="black-text">
-                          <th class="left">Country of Birth</th>
-                          <td>${player.countryOfBirth}</td>
-                        </tr>
-                        <tr class="black-text">
-                          <th class="left">Nationality</th>
-                          <td>${player.nationality}</td>
-                        </tr>
-                        <tr class="black-text">
-                          <th class="left">Shirt Number</th>
-                          <td>${player.shirtNumber}</td>
-                        </tr>
-                        <tr class="black-text">
-                          <th class="left">Role</th>
-                          <td>${player.role}</td>
-                        </tr>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-                `;
-        });
-        ` </div>
-          </div>`;
-        // Sisipkan komponen card ke dalam elemen dengan id #content
-        document.getElementById("data-team").innerHTML = teamHTML;
+        teamItem(data);
         resolve(data);
       })
       .then(changeCellIfEmpty)
@@ -900,122 +380,17 @@ const getSavedTeams = () => {
   getAll().then(function (teams) {
     console.log(teams);
     // Menyusun komponen card artikel secara dinamis
-    var teamsHTML = "";
-    teams.forEach(function (team) {
-      teamsHTML += `
-      <div class="col s4 m4 l4">
-        <div class="card">
-        <a href="./team.html?id=${team.id}&saved=true">
-          <div class="card-image waves-effect waves-block waves-light">
-            <img src="${team.crestUrl}" />
-          </div>
-        </a>
-        <div class="card-content">
-          <span class="card-title truncate">${team.name}</span>
-        </div>
-      </div>
-      </div>  
-                `;
-    });
-    // Sisipkan komponen card ke dalam elemen dengan id #body-content
-    document.getElementById("teams").innerHTML = teamsHTML;
+    savedTeam(teams);
   });
 };
 
 const getSavedTeamById = () => {
   let urlParams = new URLSearchParams(window.location.search);
   let idParam = urlParams.get("id");
-  console.log(idParam);
 
   getById(idParam)
-    .then(function (teams) {
-      console.log(teams);
-      let teamHTML = "";
-
-      teamHTML += `
-          <div id="team-info" class="row">
-          <div class="col s12 m4 l4">
-            <div class="card z-depth-3">
-              <div class="card-image">
-                <img src=${replaceNoImage(teams.crestUrl)} />
-              </div>
-            </div>
-          </div>
-          <div class="col s12 m8 l8">
-            <div class="card z-depth-3">
-              <div class="card-content black-text">
-                <span class="card-title">${teams.name}</span>
-                
-                <table>
-                  <tr>
-                    <th class="left">Addres</th>
-                    <td>${teams.address}</td>
-                  </tr>
-                  <tr>
-                    <th class="left">Email</th>
-                    <td>${teams.email}</td>
-                  </tr>
-                  <tr>
-                    <th class="left">Venue</th>
-                    <td>${teams.venue}</td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="team-squad">
-            <h1>Meet The Squad</h1>
-            <div class="row">`;
-      teams.squad.forEach(function (player) {
-        teamHTML += `
-              <div class="col s12 m6 l6 xl4">
-                  <div class="card z-depth-3">
-                    <div class="card-content center">
-                      <span class="card-title grey-text text-darken-4"
-                        ><p>${player.name}</p></span
-                      >
-                      <p>${player.position}</p>
-                      <a
-                        class="btn-player waves-effect waves-light purple lighten-1 btn-small activator"
-                        >Detail</a
-                      >
-                    </div>
-                    <div class="card-reveal">
-                      <span class="card-title black-text text-darken-4"
-                        ><i class="material-icons right">close</i></span
-                      >
-                      <table>
-                        <tr class="black-text">
-                          <th class="left">Birth</th>
-                          <td>${player.dateOfBirth}</td>
-                        </tr>
-                        <tr class="black-text">
-                          <th class="left">Country of Birth</th>
-                          <td>${player.countryOfBirth}</td>
-                        </tr>
-                        <tr class="black-text">
-                          <th class="left">Nationality</th>
-                          <td>${player.nationality}</td>
-                        </tr>
-                        <tr class="black-text">
-                          <th class="left">Shirt Number</th>
-                          <td>${player.shirtNumber}</td>
-                        </tr>
-                        <tr class="black-text">
-                          <th class="left">Role</th>
-                          <td>${player.role}</td>
-                        </tr>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-                `;
-      });
-      ` </div>
-          </div>`;
-      // Sisipkan komponen card ke dalam elemen dengan id #content
-      document.getElementById("data-team").innerHTML = teamHTML;
+    .then(function (data) {
+      teamItem(data);
     })
     .then(hideSpinner);
 };
@@ -1029,6 +404,7 @@ const getDeletedTeamId = () => {
 };
 
 export {
+  replaceNoImage,
   getLeagues,
   getLeaguesId,
   getMatchesId,

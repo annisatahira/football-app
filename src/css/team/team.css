@@ -59,11 +59,11 @@
 }
 
 a {
-  color: #5f5a5a;
+  color: #5f5a5a !important;
 }
 
 a:hover {
-  color: purple;
+  color: purple !important;
 }
 
 @media only screen and (min-width: 768px) {
