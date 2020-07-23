@@ -1,4 +1,4 @@
-import * as idb from "../idb.js";
+import * as idb from "./idb.js";
 
 const dbPromised = idb.open("football-app", 1, function (upgradeDb) {
   let teamsObjectStore = upgradeDb.createObjectStore("teams", {

@@ -10,10 +10,12 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+    <!-- <link rel="stylesheet" href="src/css/materialize.min.css" />
+    <link rel="stylesheet" href="src/css/style.css" /> -->
   </head>
   <body>
     <!-- Navigasi -->
-    <nav role="navigation">
+    <nav role="navigation" id="nav" style="display: none;">
       <div class="nav-wrapper container">
         <span class="brand-logo center" id="logo-container">Soccer</span>
         <a href="./index.html" class="sidenav-trigger" data-target="nav-mobile"
@@ -32,6 +34,22 @@
       <div id="team">
         <div class="container">
           <div id="data-team"></div>
+          <!-- Button Add and Delete -->
+          <div class="fixed-action-btn">
+            <a class="btn-floating btn-large green" id="save">
+              <i class="large material-icons">save</i>
+            </a>
+            <a class="btn-floating btn-large red" id="delete">
+              <i class="large material-icons">delete</i>
+            </a>
+          </div>
+          <div id="loading" style="display: none;">
+            <img
+              id="loading-image"
+              src="src/images/loader.gif"
+              alt="Loading..."
+            />
+          </div>
         </div>
       </div>
     </main>
@@ -43,25 +61,11 @@
     </footer>
     <!-- Akhir Footer -->
 
-    <!-- Button Add and Delete -->
-    <div class="fixed-action-btn">
-      <a
-        onclick="M.toast({html: 'Save Team, Check Favorite Team'})"
-        class="btn-floating btn-large green"
-        id="save"
-      >
-        <i class="large material-icons">save</i>
-      </a>
-      <a class="btn-floating btn-large red" id="delete">
-        <i class="large material-icons">delete</i>
-      </a>
-    </div>
-
     <!-- Loading Animate -->
-    <div id="loading">
-      <img id="loading-image" src="src/images/loader.gif" alt="Loading..." />
-    </div>
 
-    <script></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="src/js/db/idb.js"></script>
+    <script src="src/js/views/materialize.min.js"></script>
+    <script src="src/js/team.js" type="module"></script> -->
   </body>
 </html>

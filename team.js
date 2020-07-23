@@ -1,10 +1,10 @@
 import "regenerator-runtime";
-import "../css/style.css";
-import "../css/materialize.min.css";
-import "./views/materialize.min.js";
-import "./db/db.js";
-import { getTeamId, getSavedTeamById, getDeletedTeamId } from "./api.js";
-import { saveTeamForLater } from "./db/db.js";
+import "./src/css/style.css";
+import "./src/css/materialize.min.css";
+import "./src/js/views/materialize.min.js";
+import "./src/js/db/db.js";
+import { getTeamId, getSavedTeamById, getDeletedTeamId } from "./src/js/api.js";
+import { saveTeamForLater } from "./src/js/db/db.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   let urlParams = new URLSearchParams(window.location.search);

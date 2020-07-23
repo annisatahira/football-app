@@ -1,6 +1,6 @@
 import leagues from "../data/leagues.js";
 import $ from "jquery";
-import { getAll, getById, deleteSavedTeam, checkTeamId } from "../js/db/db.js";
+import { getAll, getById, deleteSavedTeam, checkTeamId } from "./db/db.js";
 import standingItem from "../components/items/standings.js";
 import matchItem from "../components/items/match.js";
 import leagueItem from "../components/items/league.js";
@@ -48,6 +48,10 @@ const replaceNoImage = (image) => {
   } else {
     return image;
   }
+};
+
+const showNav = () => {
+  document.getElementById("nav").style.display = "block";
 };
 
 const showSpinner = () => {
@@ -321,7 +325,8 @@ const getStandingIdStart = () => {
 
 // Get Detail Team
 const getTeamId = () => {
-  console.log();
+  // console.log();
+  showNav();
   showSpinner();
   return new Promise(function (resolve, reject) {
     let urlParams = new URLSearchParams(window.location.search);
@@ -378,7 +383,8 @@ const getSavedTeams = () => {
 const getSavedTeamById = () => {
   let urlParams = new URLSearchParams(window.location.search);
   let idParam = urlParams.get("id");
-
+  showNav();
+  showSpinner();
   getById(idParam)
     .then(function (data) {
       teamItem(data);

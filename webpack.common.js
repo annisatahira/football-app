@@ -1,10 +1,14 @@
+const ServiceWorkerWebpackPlugin = require("serviceworker-webpack-plugin");
+
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 const path = require("path");
 
 module.exports = {
   entry: {
-    index: "./src/js/index.js",
-    team: "./src/js/team.js",
+    index: "./index.js",
+    team: "./team.js",
+    serviceworker: "./service-worker.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -62,6 +66,9 @@ module.exports = {
       template: "./team.html",
       filename: "team.html",
       chunks: ["team"],
+    }),
+    new ServiceWorkerWebpackPlugin({
+      entry: path.join(__dirname, "./service-worker.js"),
     }),
   ],
 };

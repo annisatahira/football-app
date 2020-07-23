@@ -1,18 +1,21 @@
 import "regenerator-runtime";
-import "../css/style.css";
-import "../css/materialize.min.css";
-import "./views/materialize.min.js";
+import "./src/css/style.css";
+import "./src/css/materialize.min.css";
+import "./src/js/views/materialize.min.js";
 
-import "../components/app-nav.js";
-import "../components/app-footer.js";
-import "../components/items/competition.js";
+import "./src/components/app-nav.js";
+import "./src/components/app-footer.js";
+import "./src/components/items/competition.js";
 
-import "../js/db/db.js";
-import { requestPermission } from "./notification.js";
+import "./src/js/db/db.js";
+import { requestPermission } from "./src/js/notification.js";
 
-import main from "./views/nav.js";
+import main from "./src/js/views/nav.js";
+
+import runtime from "serviceworker-webpack-plugin/lib/runtime";
 
 if ("serviceWorker" in navigator) {
+  runtime.register();
   window.addEventListener("load", function () {
     navigator.serviceWorker
       .register("./service-worker.js")

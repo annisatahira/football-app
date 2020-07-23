@@ -1,36 +1,41 @@
 const CACHE_NAME = "football-app-v1";
-var urlsToCache = [
+let urlsToCache = [
   "/",
   "/index.html",
   "/team.html",
+
   "/service-worker.js",
   "/src/components/nav-menu.html",
   "/src/components/app-nav.js",
-
-  "/src/components/pages/home.html",
-
-  "/src/components/items/competition.js",
-
+  "/src/components/app-footer.js",
+  "/index.js",
+  "/team.js",
+  "/src/js/api.js",
   "/src/css/materialize.min.css",
   "/src/css/style.css",
-  "/src/css/nav.css",
-
-  "/src/css/home/header.css",
-  "/src/css/home/match.css",
-  "/src/css/team/team.css",
-
   "/src/data/leagues.js",
-
-  "/src/fonts/leaguespartan-bold.woff",
-
   "/src/images/loader.gif",
   "/src/images/no-image.svg",
-
-  "/src/js/views/view.js",
-  "/src/js/team.js",
-  "/src/js/api.js",
-  "/src/js/index.js",
-  "/src/js/materialize.min.js",
+  "/src/fonts/leaguespartan-bold.woff",
+  "/src/components/items/competition.js",
+  "/src/components/items/league.js",
+  "/src/components/items/match.js",
+  "/src/components/items/standings.js",
+  "/src/components/items/team.js",
+  "/src/components/pages/home.html",
+  "/src/components/pages/saved.html",
+  "/src/css/components/home.css",
+  "/src/css/components/team.css",
+  "/src/css/components/nav.css",
+  "/src/css/components/footer.css",
+  "/src/js/db/idb.js",
+  "/src/js/db/db.js",
+  "/src/js/views/materialize.min.js",
+  "/src/js/views/nav.js",
+  "/webpack.common.js",
+  "/webpack.dev.js",
+  "/webpack.prod.js",
+  "/src/js/notification.js",
 ];
 
 self.addEventListener("install", function (event) {
@@ -78,48 +83,48 @@ self.addEventListener("activate", function (event) {
   );
 });
 
-// Notification
-self.addEventListener("notificationclick", function (event) {
-  event.notification.close();
-  if (!event.action) {
-    // Penguna menyentuh area notifikasi diluar action
-    console.log("Notification Click.");
-    return;
-  }
-  switch (event.action) {
-    case "yes-choice":
-      console.log("Pengguna memilih action yes.");
-      // buka tab baru
-      clients.openWindow("https://google.com");
-      break;
-    case "no-choice":
-      console.log("Pengguna memilih action no");
-      event.notification.close();
-      break;
-    default:
-      console.log(`Action yang dipilih tidak dikenal: '${event.action}'`);
-      break;
-  }
-});
+// // Notification
+// self.addEventListener("notificationclick", function (event) {
+//   event.notification.close();
+//   if (!event.action) {
+//     // Penguna menyentuh area notifikasi diluar action
+//     console.log("Notification Click.");
+//     return;
+//   }
+//   switch (event.action) {
+//     case "yes-choice":
+//       console.log("Pengguna memilih action yes.");
+//       // buka tab baru
+//       clients.openWindow("https://google.com");
+//       break;
+//     case "no-choice":
+//       console.log("Pengguna memilih action no");
+//       event.notification.close();
+//       break;
+//     default:
+//       console.log(`Action yang dipilih tidak dikenal: '${event.action}'`);
+//       break;
+//   }
+// });
 
-// Push Message
-self.addEventListener("push", function (event) {
-  var body;
-  if (event.data) {
-    body = event.data.text();
-  } else {
-    body = "Push message no payload";
-  }
-  var options = {
-    body: body,
-    icon: "img/notification.png",
-    vibrate: [100, 50, 100],
-    data: {
-      dateOfArrival: Date.now(),
-      primaryKey: 1,
-    },
-  };
-  event.waitUntil(
-    self.registration.showNotification("Push Notification", options)
-  );
-});
+// // Push Message
+// self.addEventListener("push", function (event) {
+//   var body;
+//   if (event.data) {
+//     body = event.data.text();
+//   } else {
+//     body = "Push message no payload";
+//   }
+//   var options = {
+//     body: body,
+//     icon: "img/notification.png",
+//     vibrate: [100, 50, 100],
+//     data: {
+//       dateOfArrival: Date.now(),
+//       primaryKey: 1,
+//     },
+//   };
+//   event.waitUntil(
+//     self.registration.showNotification("Push Notification", options)
+//   );
+// });
