@@ -1,5 +1,9 @@
 import "../components/app-nav.js";
 import "../components/items/competition.js";
+import "../js/idb.js";
+import "../js/db/db.js";
+import { requestPermission } from "./notification.js";
+
 import main from "./views/view.js";
 
 if ("serviceWorker" in navigator) {
@@ -15,6 +19,14 @@ if ("serviceWorker" in navigator) {
   });
 } else {
   console.log("ServiceWorker belum didukung browser ini.");
+}
+
+// Periksa fitur Notification API
+if ("Notification" in window) {
+  requestPermission();
+  console.log("yippir");
+} else {
+  console.error("Browser tidak mendukung notifikasi.");
 }
 
 document.addEventListener("DOMContentLoaded", main);

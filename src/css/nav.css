@@ -5,6 +5,21 @@ nav {
   box-shadow: none;
 }
 
+/* .bottomnav {
+  background-color: #a64090;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 9999;
+  padding: 0;
+}
+
+.bottomnav nav ul li {
+  width: 50%;
+  float: none;
+} */
+
 .brand-logo img {
   position: absolute;
   height: 70px;
