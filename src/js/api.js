@@ -32,16 +32,6 @@ const error = (err) => {
   console.log(err);
 };
 
-const fetchApi = (url) => {
-  fetch(url, {
-    headers: {
-      "X-Auth-Token": token,
-    },
-  })
-    .then(status)
-    .then(json);
-};
-
 const changeCellIfEmpty = () => {
   const matchEl = document.querySelectorAll("td");
 

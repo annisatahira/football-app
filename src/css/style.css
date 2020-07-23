@@ -8,9 +8,12 @@
   src: url("../../src/fonts/leaguespartan-bold.woff");
 }
 
+html,
 body {
   font-family: league-spartan, Georgia, "Times New Roman", Times, serif;
+  position: relative;
   background-color: #322f2f;
+  height: 100%;
 }
 
 #loading {

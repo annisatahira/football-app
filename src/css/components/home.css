@@ -115,6 +115,10 @@ table {
 }
 
 @media only screen and (min-width: 768px) {
+  #body-content {
+    height: 100%;
+  }
+
   #match h1 {
     padding: 50px 50px 0 15px;
     font-size: 40px;

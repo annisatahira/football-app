@@ -41,7 +41,7 @@ const teamItem = (data) => {
   data.squad.forEach(function (player) {
     teamHTML += `
               <div class="col s12 m6 l6 xl4">
-                  <div class="card z-depth-3">
+                  <div class="card player-item z-depth-3">
                     <div class="card-content center">
                       <span class="card-title grey-text text-darken-4"
                         ><p>${player.name}</p></span
