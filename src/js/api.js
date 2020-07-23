@@ -1,4 +1,5 @@
 import leagues from "../data/leagues.js";
+import $ from "jquery";
 import { getAll, getById, deleteSavedTeam, checkTeamId } from "../js/db/db.js";
 import standingItem from "../components/items/standings.js";
 import matchItem from "../components/items/match.js";

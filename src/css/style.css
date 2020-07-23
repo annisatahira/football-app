@@ -1,6 +1,7 @@
-@import "home/header.css";
-@import "home/match.css";
-@import "team/team.css";
+@import "components/nav.css";
+@import "components/home.css";
+@import "components/team.css";
+@import "components/footer.css";
 
 @font-face {
   font-family: league-spartan;
@@ -9,6 +10,7 @@
 
 body {
   font-family: league-spartan, Georgia, "Times New Roman", Times, serif;
+  background-color: #322f2f;
 }
 
 #loading {
@@ -17,49 +19,4 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-nav {
-  position: relative;
-  background-color: #a64090 !important;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-/* .bottomnav {
-  background-color: #a64090;
-  overflow: hidden;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  z-index: 9999;
-  padding: 0;
-}
-
-.bottomnav nav ul li {
-  width: 50%;
-  float: none;
-} */
-
-.brand-logo img {
-  position: absolute;
-  height: 70px;
-  padding-top: 12px;
-  z-index: 1;
-}
-
-nav a:hover {
-  color: black;
-}
-
-@media only screen and (min-width: 768px) {
-  .brand-logo img {
-    height: 80px;
-  }
-}
-
-@media only screen and (min-width: 1024px) {
-  .brand-logo img {
-    height: 100px;
-  }
 }

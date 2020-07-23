@@ -13,7 +13,7 @@ const teamItem = (data) => {
             </div>
           </div>
           <div class="col s12 m8 l8">
-            <div class="card z-depth-3">
+            <div class="card team-detail z-depth-3">
               <div class="card-content black-text">
                 <span class="card-title">${data.name}</span>
                 
@@ -93,11 +93,11 @@ const savedTeam = (teams) => {
   var teamsHTML = "";
   teams.forEach(function (team) {
     teamsHTML += `
-      <div class="col s4 m4 l4">
+      <div class="savedTeam col s12 m4 l4">
         <div class="card">
         <a href="./team.html?id=${team.id}&saved=true">
           <div class="card-image waves-effect waves-block waves-light">
-            <img src="${team.crestUrl}" />
+            <img src="${replaceNoImage(team.crestUrl)}" alt=${team.name} />
           </div>
         </a>
         <div class="card-content">

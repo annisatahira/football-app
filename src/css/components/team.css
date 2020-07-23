@@ -49,6 +49,7 @@
 #team-squad .btn-player {
   margin: 0 auto;
   bottom: -100px;
+  color: white !important;
 }
 .card .card-reveal {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
@@ -66,6 +67,27 @@ a:hover {
   color: purple !important;
 }
 
+.savedTeam {
+  margin-top: 20px;
+}
+
+.savedTeam .card {
+  border-radius: 20px;
+}
+
+.savedTeam img {
+  width: 100%;
+  padding: 20px;
+}
+
+.savedTeam .card-content .card-title {
+  font-size: 20px;
+  text-align: center;
+}
+
+.team-detail {
+  overflow: auto;
+}
 @media only screen and (min-width: 768px) {
   td,
   th {
@@ -80,5 +102,13 @@ a:hover {
   #team-info .card {
     margin-top: 50px;
     height: 220px;
+  }
+
+  .savedTeam {
+    margin-top: 50px;
+  }
+
+  .savedTeam img {
+    height: 200px;
   }
 }

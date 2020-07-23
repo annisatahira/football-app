@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="src/images/favicon.png" rel="icon" type="image/png" />
     <meta name="description" content="Football App" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- Navigasi -->
@@ -39,7 +43,11 @@
 
     <!-- Button Add and Delete -->
     <div class="fixed-action-btn">
-      <a class="btn-floating btn-large green" id="save">
+      <a
+        onclick="M.toast({html: 'Save Team, Check Favorite Team'})"
+        class="btn-floating btn-large green"
+        id="save"
+      >
         <i class="large material-icons">save</i>
       </a>
       <a class="btn-floating btn-large red" id="delete">

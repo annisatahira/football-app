@@ -1,8 +1,7 @@
 import "regenerator-runtime";
 import "../css/style.css";
 import "../css/materialize.min.css";
-import "./materialize.min.js";
-
+import "./views/materialize.min.js";
 import "./db/db.js";
 import { getTeamId, getSavedTeamById, getDeletedTeamId } from "./api.js";
 import { saveTeamForLater } from "./db/db.js";
