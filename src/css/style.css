@@ -11,8 +11,14 @@
 body {
   font-family: league-spartan, Georgia, "Times New Roman", Times, serif;
   background-color: #322f2f;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
+#body-content {
+  flex: 1 0 auto;
+}
 #loading {
   display: block;
   position: absolute;
