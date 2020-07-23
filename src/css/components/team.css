@@ -1,8 +1,3 @@
-#team {
-  background-color: #322f2f;
-  color: #a6a6a6;
-}
-
 #team .card {
   border-radius: 20px;
 }
@@ -25,6 +20,7 @@
 #team-squad h1 {
   font-size: 35px;
   text-align: center;
+  color: whitesmoke;
 }
 
 #team-squad h1::after {
@@ -57,6 +53,10 @@
 
 .team {
   cursor: pointer;
+}
+
+#teams {
+  height: 100vh;
 }
 
 a {

@@ -93,7 +93,7 @@ const savedTeam = (teams) => {
   var teamsHTML = "";
   teams.forEach(function (team) {
     teamsHTML += `
-      <div class="savedTeam col s12 m4 l4">
+      <div class="savedTeam col s12 m4 l3">
         <div class="card">
         <a href="./team.html?id=${team.id}&saved=true">
           <div class="card-image waves-effect waves-block waves-light">
