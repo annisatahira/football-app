@@ -36,6 +36,14 @@ let urlsToCache = [
   "/webpack.dev.js",
   "/webpack.prod.js",
   "/src/js/notification.js",
+  // "/src/images/icons/icon-36.png",
+  // "/src/images/icons/icon-48.png",
+  // "/src/images/icons/icon-72.png",
+  // "/src/images/icons/icon-96.png",
+  // "/src/images/icons/icon-144.png",
+  // "/src/images/icons/icon-192.png",
+  // "/src/images/icons/icon-512.png",
+  "/src/images/logo-app.png",
 ];
 
 self.addEventListener("install", function (event) {

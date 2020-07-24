@@ -58,10 +58,6 @@ const teamItem = (data) => {
                       >
                       <table>
                         <tr class="black-text">
-                          <th class="left">Birth</th>
-                          <td>${player.dateOfBirth}</td>
-                        </tr>
-                        <tr class="black-text">
                           <th class="left">Country of Birth</th>
                           <td>${player.countryOfBirth}</td>
                         </tr>

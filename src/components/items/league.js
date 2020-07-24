@@ -7,9 +7,6 @@ const leagueItem = (data) => {
                 <div class="col s6 m6 l6">
                   <span class="card-title">${data.name}</span>
                 </div>
-                <div class="col s6 m6 l6">
-                  <a class="waves-effect waves-light btn purple lighten-1 right">Save</a>
-                </div>
               </div>
               <table>
                 <tr>

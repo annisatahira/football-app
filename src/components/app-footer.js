@@ -9,7 +9,7 @@ class Footer extends HTMLElement {
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h4 class="white-text">Soccer</h4>
+        <img src="./src/images/logo-app.png" />
           <p class="grey-text text-lighten-4">
             Provide You Latest Match Your Favorite Team
           </p>
