@@ -3,6 +3,7 @@ let urlsToCache = [
   "/",
   "/index.html",
   "/team.html",
+  "/manifest.json",
 
   "/service-worker.js",
   "/src/components/nav-menu.html",
@@ -36,13 +37,14 @@ let urlsToCache = [
   "/webpack.dev.js",
   "/webpack.prod.js",
   "/src/js/notification.js",
-  // "/src/images/icons/icon-36.png",
-  // "/src/images/icons/icon-48.png",
-  // "/src/images/icons/icon-72.png",
-  // "/src/images/icons/icon-96.png",
-  // "/src/images/icons/icon-144.png",
-  // "/src/images/icons/icon-192.png",
-  // "/src/images/icons/icon-512.png",
+
+  "/src/images/icons/Icon-36.png",
+  "/src/images/icons/Icon-48.png",
+  "/src/images/icons/Icon-72.png",
+  "/src/images/icons/Icon-96.png",
+  "/src/images/icons/Icon-144.png",
+  "/src/images/icons/Icon-192.png",
+  "/src/images/icons/Icon-512.png",
   "/src/images/logo-app.png",
 ];
 

@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <title>Football App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="src/images/favicon.png" rel="icon" type="image/png" />
+    <link href="src/images/favicon.ico" rel="icon" type="image/ico" />
     <meta name="description" content="Football App" />
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <!-- <link rel="stylesheet" href="src/css/materialize.min.css" />
-    <link rel="stylesheet" href="src/css/style.css" /> -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#322f2f" />
   </head>
   <body>
     <!-- Navigasi -->
@@ -36,6 +36,7 @@
       <div id="team">
         <div class="container">
           <div id="data-team"></div>
+
           <!-- Button Add and Delete -->
           <div class="fixed-action-btn">
             <a class="btn-floating btn-large green" id="save">
@@ -45,6 +46,8 @@
               <i class="large material-icons">delete</i>
             </a>
           </div>
+
+          <!-- Loading Animate -->
           <div id="loading" style="display: none;">
             <img
               id="loading-image"
@@ -63,11 +66,6 @@
     </footer>
     <!-- Akhir Footer -->
 
-    <!-- Loading Animate -->
-
-    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="src/js/db/idb.js"></script>
-    <script src="src/js/views/materialize.min.js"></script>
-    <script src="src/js/team.js" type="module"></script> -->
+    >
   </body>
 </html>
