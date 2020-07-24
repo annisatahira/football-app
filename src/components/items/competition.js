@@ -7,6 +7,7 @@ class Competition extends HTMLElement {
     this.innerHTML = `
     
     <div id="league-info" class="row">
+    
     </div>
 
     <div class="leagues-data row">

@@ -9,7 +9,7 @@ class Footer extends HTMLElement {
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-        <img src="./src/images/logo-app.png" />
+        <img src="./src/images/logo-app.png" alt="logo-xoccer"/>
           <p class="grey-text text-lighten-4">
             Provide You Latest Match Your Favorite Team
           </p>
@@ -19,6 +19,7 @@ class Footer extends HTMLElement {
           <ul>
             <li>Canva</li>
           </ul>
+          
         </div>
       </div>
     </div>

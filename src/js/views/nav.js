@@ -7,7 +7,6 @@ import {
   getMatchesIdStart,
   getStandingIdStart,
   getStandingId,
-  getTeamId,
   getSavedTeams,
 } from "../api.js";
 
@@ -65,7 +64,6 @@ const main = () => {
             getLeagues();
             let matchNull = document.querySelectorAll("tbody");
             if (matchNull[0].innerText === "") {
-              console.log("mana datanya");
               getLeaguesIdStart();
               getMatchesIdStart();
               getStandingIdStart();

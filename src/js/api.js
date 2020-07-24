@@ -199,7 +199,6 @@ const getMatchesId = (id) => {
       .then(status)
       .then(json)
       .then(function (data) {
-        console.log(data);
         matchItem(data);
         resolve(data);
       })
