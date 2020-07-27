@@ -4,10 +4,18 @@ import { getAll, getById, deleteSavedTeam, checkTeamId } from "./db/db.js";
 import standingItem from "../components/items/standings.js";
 import matchItem from "../components/items/match.js";
 import leagueItem from "../components/items/league.js";
-import { teamItem, savedTeam } from "../components/items/team.js";
+import { teamItem, savedTeam, noTeam } from "../components/items/team.js";
 
 const base_url = "https://api.football-data.org/v2/";
-const token = "c197ffb8ed1844c38a962dd52dea74be";
+const API_KEY = "c197ffb8ed1844c38a962dd52dea74be";
+
+const fetchApi = (url) => {
+  return fetch(url, {
+    headers: {
+      "X-Auth-Token": API_KEY,
+    },
+  });
+};
 
 //blok kode yg dipanggil jika berhasil
 const status = (res) => {
@@ -63,7 +71,6 @@ const hideSpinner = () => {
 };
 
 const getLeagues = () => {
-  console.log(leagues);
   let leaguesHTML = "";
   leagues.forEach(function (league) {
     leaguesHTML += `
@@ -87,11 +94,7 @@ const getLeaguesId = (id) => {
     // Match URL FETCH
     if ("caches" in window) {
       caches
-        .match(`${base_url}competitions/${id}`, {
-          headers: {
-            "X-Auth-Token": token,
-          },
-        })
+        .match(`${base_url}competitions/${id}`)
         .then(function (response) {
           if (response) {
             response.json().then(function (data) {
@@ -105,11 +108,7 @@ const getLeaguesId = (id) => {
     }
     // End of URL FETCH
 
-    fetch(`${base_url}competitions/${id}`, {
-      headers: {
-        "X-Auth-Token": token,
-      },
-    })
+    fetchApi(`${base_url}competitions/${id}`)
       .then(status)
       .then(json)
       .then(function (data) {
@@ -129,11 +128,7 @@ const getStandingId = (id) => {
     // Match URL FETCH
     if ("caches" in window) {
       caches
-        .match(`${base_url}competitions/${id}/standings`, {
-          headers: {
-            "X-Auth-Token": token,
-          },
-        })
+        .match(`${base_url}competitions/${id}/standings`)
         .then(function (response) {
           if (response) {
             response.json().then(function (data) {
@@ -147,11 +142,7 @@ const getStandingId = (id) => {
     }
     // End of URL FETCH
 
-    fetch(`${base_url}competitions/${id}/standings`, {
-      headers: {
-        "X-Auth-Token": token,
-      },
-    })
+    fetchApi(`${base_url}competitions/${id}/standings`)
       .then(status)
       .then(json)
       .then(function (data) {
@@ -172,15 +163,10 @@ const getMatchesId = (id) => {
     // Match URL FETCH
     if ("caches" in window) {
       caches
-        .match(`${base_url}competitions/${id}/matches`, {
-          headers: {
-            "X-Auth-Token": token,
-          },
-        })
+        .match(`${base_url}competitions/${id}/matches`)
         .then(function (response) {
           if (response) {
             response.json().then(function (data) {
-              console.log("ini data cache standings" + data);
               matchItem(data);
               resolve(data);
             });
@@ -191,11 +177,7 @@ const getMatchesId = (id) => {
     }
     // End of URL FETCH
 
-    fetch(`${base_url}competitions/${id}/matches`, {
-      headers: {
-        "X-Auth-Token": token,
-      },
-    })
+    fetchApi(`${base_url}competitions/${id}/matches`)
       .then(status)
       .then(json)
       .then(function (data) {
@@ -214,15 +196,10 @@ const getLeaguesIdStart = () => {
   // Match URL FETCH
   if ("caches" in window) {
     caches
-      .match(`${base_url}competitions/2014`, {
-        headers: {
-          "X-Auth-Token": token,
-        },
-      })
+      .match(`${base_url}competitions/2014`)
       .then(function (response) {
         if (response) {
           response.json().then(function (data) {
-            console.log("ini yg icache nfo" + data);
             leagueItem(data);
           });
         }
@@ -232,11 +209,7 @@ const getLeaguesIdStart = () => {
   }
   // End of URL FETCH
 
-  fetch(`${base_url}competitions/2014`, {
-    headers: {
-      "X-Auth-Token": token,
-    },
-  })
+  fetchApi(`${base_url}competitions/2014`)
     .then(status)
     .then(json)
     .then(function (data) {
@@ -252,11 +225,7 @@ const getMatchesIdStart = () => {
   // Match URL FETCH
   if ("caches" in window) {
     caches
-      .match(`${base_url}competitions/2014/matches`, {
-        headers: {
-          "X-Auth-Token": token,
-        },
-      })
+      .match(`${base_url}competitions/2014/matches`)
       .then(function (response) {
         if (response) {
           response.json().then(function (data) {
@@ -269,11 +238,7 @@ const getMatchesIdStart = () => {
   }
   // End of URL FETCH
 
-  fetch(`${base_url}competitions/2014/matches`, {
-    headers: {
-      "X-Auth-Token": token,
-    },
-  })
+  fetchApi(`${base_url}competitions/2014/matches`)
     .then(status)
     .then(json)
     .then(function (data) {
@@ -288,11 +253,7 @@ const getStandingIdStart = () => {
   // Match URL FETCH
   if ("caches" in window) {
     caches
-      .match(`${base_url}competitions/2014/standings`, {
-        headers: {
-          "X-Auth-Token": token,
-        },
-      })
+      .match(`${base_url}competitions/2014/standings`)
       .then(function (response) {
         if (response) {
           response.json().then(function (data) {
@@ -306,11 +267,7 @@ const getStandingIdStart = () => {
   // End of URL FETCH
 
   showSpinner();
-  fetch(`${base_url}competitions/2014/standings`, {
-    headers: {
-      "X-Auth-Token": token,
-    },
-  })
+  fetchApi(`${base_url}competitions/2014/standings`)
     .then(status)
     .then(json)
     .then(function (data) {
@@ -324,7 +281,6 @@ const getStandingIdStart = () => {
 
 // Get Detail Team
 const getTeamId = () => {
-  // console.log();
   showNav();
   showSpinner();
   return new Promise(function (resolve, reject) {
@@ -333,11 +289,7 @@ const getTeamId = () => {
     // Match URL FETCH
     if ("caches" in window) {
       caches
-        .match(`${base_url}teams/${idParam}`, {
-          headers: {
-            "X-Auth-Token": token,
-          },
-        })
+        .match(`${base_url}teams/${idParam}`)
         .then(function (response) {
           if (response) {
             response.json().then(function (data) {
@@ -352,12 +304,7 @@ const getTeamId = () => {
     }
     // End of URL FETCH
 
-    console.log(idParam);
-    fetch(`${base_url}teams/${idParam}`, {
-      headers: {
-        "X-Auth-Token": token,
-      },
-    })
+    fetchApi(`${base_url}teams/${idParam}`)
       .then(status)
       .then(json)
       .then(function (data) {
@@ -372,11 +319,18 @@ const getTeamId = () => {
 };
 
 const getSavedTeams = () => {
-  getAll().then(function (teams) {
-    console.log(teams);
-    // Menyusun komponen card artikel secara dinamis
-    savedTeam(teams);
-  });
+  getAll()
+    .then(function (teams) {
+      // Menyusun komponen card artikel secara dinamis
+      savedTeam(teams);
+    })
+    .then(function () {
+      if (document.getElementById("teams").innerText === "") {
+        noTeam();
+      } else {
+        document.getElementById("no-image").style.display = "none";
+      }
+    });
 };
 
 const getSavedTeamById = () => {
@@ -394,8 +348,9 @@ const getSavedTeamById = () => {
 const getDeletedTeamId = () => {
   let urlParams = new URLSearchParams(window.location.search);
   let idParam = urlParams.get("id");
-  console.log(idParam);
+
   deleteSavedTeam(idParam);
+  M.toast({ html: "Team Deleted" });
   $(location).attr("href", "index.html#saved");
 };
 

@@ -9,6 +9,7 @@ import {
   getStandingId,
   getSavedTeams,
 } from "../api.js";
+import { noTeam } from "../../components/items/team.js";
 
 const main = () => {
   // Activate sidebar nav
@@ -19,8 +20,8 @@ const main = () => {
   function loadNav() {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-      if (this.readyState == 4) {
-        if (this.status != 200) return;
+      if (this.readyState === 4) {
+        if (this.status !== 200) return;
 
         // Muat daftar tautan menu
         document.querySelectorAll(".topnav, .sidenav").forEach(function (elm) {
@@ -49,15 +50,15 @@ const main = () => {
 
   // Load page content
   let page = window.location.hash.substr(1);
-  if (page == "") page = "home";
+  if (page === "") page = "home";
 
   const loadPage = (page) => {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-      if (this.readyState == 4) {
+      if (this.readyState === 4) {
         let content = document.querySelector("#body-content");
 
-        if (this.status == 200) {
+        if (this.status === 200) {
           content.innerHTML = xhttp.responseText;
 
           if (page === "home") {
@@ -88,8 +89,7 @@ const main = () => {
               elm.addEventListener("click", function (el) {
                 const index = $(".league-item").index(this);
                 let id = document.querySelectorAll("h4")[index].innerText;
-                console.log(id);
-                console.log(index);
+
                 getMatchesId(id);
                 getLeaguesId(id);
                 getStandingId(id);
@@ -98,7 +98,7 @@ const main = () => {
           } else if (page === "saved") {
             getSavedTeams();
           }
-        } else if (this.status == 404) {
+        } else if (this.status === 404) {
           content.innerHTML = "<p>Halaman tidak ditemukan.</p>";
         } else {
           content.innerHTML = "<p>Ups.. halaman tidak dapat diakses.</p>";

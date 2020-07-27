@@ -86,7 +86,7 @@ const teamItem = (data) => {
 };
 
 const savedTeam = (teams) => {
-  var teamsHTML = "";
+  let teamsHTML = "";
   teams.forEach(function (team) {
     teamsHTML += `
       <div class="savedTeam col s12 m4 l3">
@@ -107,4 +107,18 @@ const savedTeam = (teams) => {
   document.getElementById("teams").innerHTML = teamsHTML;
 };
 
-export { teamItem, savedTeam };
+const noTeam = () => {
+  let contentHTML = `
+    <div class="container-image">
+    <div class="no-team">
+      <img src="src/images/no-team.png" />
+    </div>
+  </div>  
+                  `;
+
+  // Sisipkan komponen card ke dalam elemen dengan id #body-content
+
+  document.getElementById("no-image").innerHTML = contentHTML;
+};
+
+export { teamItem, savedTeam, noTeam };

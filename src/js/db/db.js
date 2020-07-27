@@ -72,7 +72,6 @@ const getAll = () => {
         return store.getAll();
       })
       .then(function (teams) {
-        console.log(teams);
         resolve(teams);
       });
   });

@@ -85,6 +85,20 @@ a:hover {
   overflow: auto;
 }
 
+.container-image {
+  margin: 0 auto;
+  position: relative;
+  height: 50vh;
+}
+
+.no-team img {
+  height: 280px;
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 @media only screen and (min-width: 768px) {
   td,
   th {
@@ -107,5 +121,10 @@ a:hover {
 
   .savedTeam img {
     height: 200px;
+  }
+
+  .no-team img {
+    top: 60%;
+    height: 600px;
   }
 }

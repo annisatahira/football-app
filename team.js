@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
   btnSave.onclick = function () {
     btnDelete.style.display = "block";
     btnSave.style.display = "none";
-
+    M.toast({ html: "Team Saved, check Favorite Team Menu" });
     itemTeam.then(function (team) {
       saveTeamForLater(team);
     });

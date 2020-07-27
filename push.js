@@ -1,4 +1,4 @@
-var webPush = require("web-push");
+const webPush = require("web-push");
 
 const vapidKeys = {
   publicKey:
@@ -11,18 +11,18 @@ webPush.setVapidDetails(
   vapidKeys.publicKey,
   vapidKeys.privateKey
 );
-var pushSubscription = {
+const pushSubscription = {
   endpoint:
-    "https://fcm.googleapis.com/fcm/send/cWX7foBWYDc:APA91bEedRIqfh8f4cMu9FAUWs-J0YKgkYXXqV9gKID0X1UexYnmJtb4Kr8JZiPH9I9KrmFb3e0wnRru_eUIHzQhctRQhM6dCF88_MJE15aPME5oqDvtgqiv_jhTWIlHWvGeqNR_dvoO",
+    "https://fcm.googleapis.com/fcm/send/cneaEan56bA:APA91bFdcXmQxB4GRBZPwkP4R21gFwXabIB-lhN28Bi_FPZwK8zSg1R3NhNmUMEZOpN76xk-3Zdo-mGIFRNDf1jGSM1VIwd7V1k_vlhe0HY2BLFLEHlGJucSdIpCImo1THOBEnsa8dTj",
   keys: {
     p256dh:
-      "BK1XdnIT5S5mwH+W6R8PnSh8/sSCO905nYjF0CYo9Fo6cH+WROlAg1Jn/G/S8bclpqMwSbDCLdhDTmsM3X83ucQ=",
-    auth: "JSQQ6IOM4at8kT8wUG7efg==",
+      "BLxzUsHFKyifDG28e0DO4q2g58EgooseykNpM2YzwPCnzG62fgECvWYJ2iIJs/+BcJI9xBOJBIUCg4EBB6ue0ec=",
+    auth: "mNt1mxzq2890/wgyggY3mQ==",
   },
 };
-var payload = "Update! Final Score of Premier League";
+const payload = "Update! Final Score of Premier League";
 
-var options = {
+const options = {
   gcmAPIKey: "503098371122",
   TTL: 60,
 };

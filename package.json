@@ -38,7 +38,6 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "idb": "^5.0.4",
     "jquery": "^3.5.1",
     "regenerator-runtime": "^0.13.5",
     "web-push": "^3.4.4"
