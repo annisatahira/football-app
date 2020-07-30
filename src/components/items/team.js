@@ -8,7 +8,7 @@ const teamItem = (data) => {
           <div class="col s12 m4 l4">
             <div class="card z-depth-3">
               <div class="card-image">
-                <img src=${replaceNoImage(data.crestUrl)} />
+                <img src=${replaceNoImage(data.crestUrl)} alt=${data.name}/>
               </div>
             </div>
           </div>
@@ -83,6 +83,7 @@ const teamItem = (data) => {
                     </div>`;
   // Sisipkan komponen card ke dalam elemen dengan id #content
   document.getElementById("data-team").innerHTML = teamHTML;
+  // document.getElementById("no-connection").innerHTML = "";
 };
 
 const savedTeam = (teams) => {

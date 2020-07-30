@@ -8,7 +8,7 @@ class NavApp extends HTMLElement {
       <nav role="navigation">
       <div class="nav-wrapper container">
         <span class="brand-logo">
-          <img src="./src/images/logo-app.png" alt="logo-xoccer" />
+        <a href="index.html"><img src="./src/images/logo-app.png" alt="logo-xoccer"/></a>
         </span>
         <a href="#" class="sidenav-trigger white-text" data-target="nav-mobile">☰</a>
   

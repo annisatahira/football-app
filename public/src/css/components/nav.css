@@ -1,0 +1,39 @@
+nav {
+  position: relative;
+  background-color: #a64090 !important;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+nav .brand-logo {
+  left: 25% !important;
+}
+nav .brand-logo img {
+  position: absolute;
+  height: 50px;
+  z-index: 1;
+}
+
+nav a {
+  color: white !important;
+}
+
+nav a:hover {
+  color: black !important;
+}
+
+.sidenav {
+  background-color: #a64090 !important;
+}
+
+@media only screen and (min-width: 768px) {
+  nav .brand-logo {
+    left: 35% !important;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  nav .brand-logo {
+    left: 0% !important;
+  }
+}

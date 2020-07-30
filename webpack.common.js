@@ -1,4 +1,4 @@
-const ServiceWorkerWebpackPlugin = require("serviceworker-webpack-plugin");
+// const ServiceWorkerWebpackPlugin = require("serviceworker-webpack-plugin");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -67,8 +67,21 @@ module.exports = {
       filename: "team.html",
       chunks: ["team"],
     }),
-    new ServiceWorkerWebpackPlugin({
-      entry: path.join(__dirname, "./service-worker.js"),
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/components/nav-menu.html",
+    //   filename: "nav-menu.html",
+    //   path: path.resolve(__dirname, "dist"),
+    // }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/components/pages/home.html",
+    //   filename: "home.html",
+    // }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/components/pages/saved.html",
+    //   filename: "saved.html",
+    // }),
+    // new ServiceWorkerWebpackPlugin({
+    //   entry: path.join(__dirname, "./src/service-worker.js"),
+    // }),
   ],
 };

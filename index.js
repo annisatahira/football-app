@@ -12,7 +12,7 @@ import { requestPermission } from "./src/js/notification.js";
 
 import main from "./src/js/views/nav.js";
 
-import runtime from "serviceworker-webpack-plugin/lib/runtime";
+// import runtime from "serviceworker-webpack-plugin/lib/runtime";
 
 // Register service worker
 const registerServiceWorker = () => {
@@ -29,7 +29,7 @@ const registerServiceWorker = () => {
 
 // Periksa service worker
 if (!("serviceWorker" in navigator)) {
-  runtime.register();
+  // runtime.register();
   console.log("Service worker tidak didukung browser ini.");
 } else {
   registerServiceWorker();

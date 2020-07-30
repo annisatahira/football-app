@@ -1,0 +1,135 @@
+#match {
+  background-color: #322f2f;
+  color: #a6a6a6;
+}
+
+#match h1 {
+  margin-top: -1px;
+  margin-bottom: 0;
+  padding: 50px 20px 0 30px;
+  font-size: 30px;
+  position: absolute;
+}
+
+#match .card {
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+#match #league-info .card {
+  margin-top: 30px;
+}
+
+#match .tabs {
+  background-color: #a64090 !important;
+  border-radius: 10px;
+}
+
+#match .tabs .tab a:hover,
+#match .tabs .tab a.active {
+  color: white !important;
+}
+
+#match .tabs .tab a {
+  color: rgba(255, 233, 251, 0.7) !important;
+}
+
+#match .tabs .tab a:focus,
+#match .tabs .tab a:focus.active {
+  background-color: rgba(219, 178, 246, 0.2) !important;
+}
+
+#all-match,
+#standings {
+  overflow: auto;
+  height: 400px;
+  margin-bottom: 50px;
+}
+
+#match td,
+#match th {
+  text-align: center;
+  padding: 12px 10px;
+}
+
+#match #league-info td,
+#match #league-info th {
+  text-align: left;
+}
+
+#match .score {
+  padding: 12px 5px;
+}
+#match .soft-black {
+  color: #5f5a5a;
+}
+
+#match .liga-img {
+  background-color: white;
+  height: 180px;
+  width: 180px;
+  border-radius: 50%;
+  border: 13px solid #a64090;
+  margin: 0 auto;
+}
+
+#match .liga-img img {
+  width: 100%;
+  padding-top: 25px;
+  height: 140px;
+  object-position: center;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+#match h6 {
+  margin-top: 20px;
+}
+
+#match h4 {
+  display: none;
+}
+
+.leagues .carousel .carousel-item {
+  top: 30px;
+}
+
+.leagues .carousel .indicators {
+  bottom: -30px;
+}
+
+td > a img {
+  width: 50px;
+  height: 50px;
+}
+
+table {
+  background-color: white;
+}
+
+@media only screen and (max-width: 767px) {
+  .container {
+    width: 95%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #body-content {
+    height: 100%;
+  }
+
+  #match h1 {
+    padding: 50px 50px 0 15px;
+    font-size: 40px;
+  }
+  .score {
+    font-size: 20px;
+  }
+
+  td,
+  th {
+    text-align: center;
+    padding: 20px 5px;
+  }
+}

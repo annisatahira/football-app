@@ -63,11 +63,15 @@ const showNav = () => {
 };
 
 const showSpinner = () => {
-  document.getElementById("loading").style.display = "block";
+  return Promise.resolve(
+    (document.getElementById("loading").style.display = "block")
+  );
 };
 
 const hideSpinner = () => {
-  document.getElementById("loading").style.display = "none";
+  return Promise.resolve(
+    (document.getElementById("loading").style.display = "none")
+  );
 };
 
 const getLeagues = () => {
@@ -90,7 +94,6 @@ const getLeagues = () => {
 //melakukan req data leagues info
 const getLeaguesId = (id) => {
   return new Promise(function (resolve, reject) {
-    showSpinner();
     // Match URL FETCH
     if ("caches" in window) {
       caches
@@ -103,8 +106,8 @@ const getLeaguesId = (id) => {
             });
           }
         })
-        .then(changeCellIfEmpty)
-        .then(hideSpinner);
+        // .then(hideSpinner)
+        .then(changeCellIfEmpty);
     }
     // End of URL FETCH
 
@@ -116,14 +119,13 @@ const getLeaguesId = (id) => {
         resolve(data);
       })
       .then(changeCellIfEmpty)
-      .then(hideSpinner)
+      // .then(hideSpinner)
 
       .catch(error);
   });
 };
 
 const getStandingId = (id) => {
-  showSpinner();
   return new Promise(function (resolve, reject) {
     // Match URL FETCH
     if ("caches" in window) {
@@ -137,8 +139,8 @@ const getStandingId = (id) => {
             });
           }
         })
-        .then(changeCellIfEmpty)
-        .then(hideSpinner);
+        // .then(hideSpinner)
+        .then(changeCellIfEmpty);
     }
     // End of URL FETCH
 
@@ -150,15 +152,13 @@ const getStandingId = (id) => {
         resolve(data);
       })
       .then(changeCellIfEmpty)
-      .then(hideSpinner)
-
+      // .then(hideSpinner)
       .catch(error);
   });
 };
 
 //melakukan req data json competition id
 const getMatchesId = (id) => {
-  showSpinner();
   return new Promise(function (resolve, reject) {
     // Match URL FETCH
     if ("caches" in window) {
@@ -172,8 +172,8 @@ const getMatchesId = (id) => {
             });
           }
         })
-        .then(changeCellIfEmpty)
-        .then(hideSpinner);
+        // .then(hideSpinner)
+        .then(changeCellIfEmpty);
     }
     // End of URL FETCH
 
@@ -185,8 +185,7 @@ const getMatchesId = (id) => {
         resolve(data);
       })
       .then(changeCellIfEmpty)
-      .then(hideSpinner)
-
+      // .then(hideSpinner)
       .catch(error);
   });
 };
@@ -204,8 +203,8 @@ const getLeaguesIdStart = () => {
           });
         }
       })
-      .then(changeCellIfEmpty)
-      .then(hideSpinner);
+      // .then(hideSpinner)
+      .then(changeCellIfEmpty);
   }
   // End of URL FETCH
 
@@ -216,6 +215,7 @@ const getLeaguesIdStart = () => {
       leagueItem(data);
     })
     .then(changeCellIfEmpty)
+    // .then(hideSpinner)
     .catch(error);
 };
 
@@ -233,8 +233,8 @@ const getMatchesIdStart = () => {
           });
         }
       })
-      .then(changeCellIfEmpty)
-      .then(hideSpinner);
+      // .then(hideSpinner)
+      .then(changeCellIfEmpty);
   }
   // End of URL FETCH
 
@@ -245,7 +245,7 @@ const getMatchesIdStart = () => {
       matchItem(data);
     })
     .then(changeCellIfEmpty)
-
+    // .then(hideSpinner)
     .catch(error);
 };
 
@@ -261,12 +261,11 @@ const getStandingIdStart = () => {
           });
         }
       })
-      .then(changeCellIfEmpty)
-      .then(hideSpinner);
+      // .then(hideSpinner)
+      .then(changeCellIfEmpty);
   }
   // End of URL FETCH
 
-  showSpinner();
   fetchApi(`${base_url}competitions/2014/standings`)
     .then(status)
     .then(json)
@@ -274,8 +273,7 @@ const getStandingIdStart = () => {
       standingItem(data);
     })
     .then(changeCellIfEmpty)
-    .then(hideSpinner)
-
+    // .then(hideSpinner)
     .catch(error);
 };
 
@@ -299,8 +297,8 @@ const getTeamId = () => {
           }
         })
         .then(changeCellIfEmpty)
-        .then(checkTeamId(idParam))
-        .then(hideSpinner);
+        .then(checkTeamId(idParam));
+      // .then(hideSpinner);
     }
     // End of URL FETCH
 
@@ -316,6 +314,14 @@ const getTeamId = () => {
 
       .catch(error);
   });
+};
+
+const getCompetitionById = (id) => {
+  Promise.all([getLeaguesId(id), getStandingId(id), getMatchesId(id)]).then(
+    function () {
+      document.getElementById("loading").style.display = "none";
+    }
+  );
 };
 
 const getSavedTeams = () => {
@@ -338,11 +344,10 @@ const getSavedTeamById = () => {
   let idParam = urlParams.get("id");
   showNav();
   showSpinner();
-  getById(idParam)
-    .then(function (data) {
-      teamItem(data);
-    })
-    .then(hideSpinner);
+  getById(idParam).then(function (data) {
+    teamItem(data);
+  });
+  // .then(hideSpinner);
 };
 
 const getDeletedTeamId = () => {
@@ -367,4 +372,5 @@ export {
   getSavedTeams,
   getSavedTeamById,
   getDeletedTeamId,
+  getCompetitionById,
 };
